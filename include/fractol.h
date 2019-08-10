@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 16:46:10 by qlouisia          #+#    #+#             */
-/*   Updated: 2019/08/08 18:56:16 by qlouisia         ###   ########.fr       */
+/*   Updated: 2019/08/10 14:25:23 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct s_lst_fractol
 	
 } t_lst_display;
 
+int initialise_graphic(t_lst_display **win, void *mlx_serv, char *tittle);
 
 #endif
 

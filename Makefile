@@ -10,7 +10,8 @@ MINILIBX = minilibx
 SRC = ./src/
 INCLUDE = ./include/fractol.h
 
-SRC_NAME = $(SRC)main.c
+SRC_NAME = $(SRC)main.c \
+			$(SRC)initialise.c\
 
 OBJ = $(SRC_NAME:.c=.o)
 
