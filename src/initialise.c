@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/10 13:42:02 by qlouisia          #+#    #+#             */
-/*   Updated: 2019/08/10 15:15:38 by qlouisia         ###   ########.fr       */
+/*   Updated: 2019/10/23 15:30:20 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,3 +28,4 @@ int initialise_graphic(t_lst_display **win, void *mlx_serv, char *tittle)
 	(*win)->data = (int *)mlx_get_data_addr((*win)->img_ptr,&(*win)->bpp,&(*win)->size_l,&(*win)->endian);
 	return(1);
 }
+

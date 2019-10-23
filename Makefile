@@ -12,6 +12,8 @@ INCLUDE = ./include/fractol.h
 
 SRC_NAME = $(SRC)main.c \
 			$(SRC)initialise.c\
+			$(SRC)display.c\
+			$(SRC)mandelbrot.c\
 
 OBJ = $(SRC_NAME:.c=.o)
 
