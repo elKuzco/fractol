@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 16:46:10 by qlouisia          #+#    #+#             */
-/*   Updated: 2019/10/23 17:22:03 by qlouisia         ###   ########.fr       */
+/*   Updated: 2019/11/04 15:58:45 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,10 @@ typedef struct s_lst_fractol
 	double Real_scale;
 	double Ima_scale;
 	int Max_it;
+	double zoom_scale;
+	unsigned int color;
+	double x;
+	double y;
 	
 } t_lst_display;
 
@@ -40,5 +44,7 @@ void initialise_fractal_mandel(t_lst_display **win);
 void	fill_pix(t_lst_display **img, int x, int y, int color);
 void mandelbrot(t_lst_display **win);
 void	refresh_image(t_lst_display **win);
+int quit_program(t_lst_display **env);
+int mouse_control(int m_code, int x, int y, t_lst_display **win);
 #endif
 
