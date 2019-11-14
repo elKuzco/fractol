@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 16:34:21 by qlouisia          #+#    #+#             */
-/*   Updated: 2019/11/04 12:08:06 by qlouisia         ###   ########.fr       */
+/*   Updated: 2019/11/14 11:36:29 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,10 @@
 int		get_input(int keycode, t_lst_display **win)
 {
 	printf("Key :%d",keycode);
-	if (keycode == 69)
+	if (keycode == 124)
 	{
-			(*win)->Minreal += (*win)->zoom_scale;
-			(*win)->Minima += (*win)->zoom_scale;
-			(*win)->Maxreal -= (*win)->zoom_scale;
-			(*win)->Maxima = (*win)->Minima +((*win)->Maxreal - (*win)->Minreal) * ((*win)->w_height / (*win)->w_width); 
-			(*win)->Real_scale = ((*win)->Maxreal - (*win)->Minreal) / (*win)->w_width; // (*win)->w_width - 1
-			(*win)->Ima_scale = ((*win)->Maxima - (*win)->Minima) / (*win)->w_height; // (*win)->w_height - 1
-			//(*win)->Max_it += 1;
-
+		(*win)->Minreal += 3/ (*win)->zoom_scale ;
+		printf("arrow right");
 	//int a = (*param)->Minima;
 	//a = 0;
 	}
@@ -47,7 +41,9 @@ void display(void *ser, t_lst_display **win)
 	(*win)->pt_function(win);
 	mlx_expose_hook((*win)->win_ptr, expose_hook, win);
 	mlx_hook((*win)->win_ptr, 17, 1L << 17, quit_program, win);
+	mlx_hook((*win)->win_ptr, 2, 3, move, win);
 	mlx_mouse_hook((*win)->win_ptr,mouse_control,win);
+	
 //	mlx_hook((*win)->win_ptr, 6, 1L < 6, get_input, win); // 4, 0
 	mlx_loop(ser);
 }

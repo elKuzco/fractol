@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 14:20:19 by qlouisia          #+#    #+#             */
-/*   Updated: 2019/11/12 17:13:29 by qlouisia         ###   ########.fr       */
+/*   Updated: 2019/11/14 11:59:42 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,35 +26,25 @@ int quit_program(t_lst_display **env)
 	exit(0);
 }
 
+
 int mouse_control(int m_code, int x, int y, t_lst_display **win)
 {
-	printf("Key :%d\n",m_code);
-	//printf("x :%d | y :%d\n",x,y);
-	double tmp;
-	
-	//(*win)->x = 0.3;
+
+	/*
 	if (m_code == 1)
 	{
-	tmp = ((*win)->Maxreal  - x) * (*win)->Real_scale;
-	//tmp = ( x - (*win)->w_width /(*win)->Maxreal - (*win)->Minreal) * (*win)->Real_scale;
-	//tmp = x * (*win)->Real_scale;
-	printf("tmp :%f \n",tmp);
-	(*win)->Minreal += tmp; 
-	(*win)->Maxreal += tmp; 
-	tmp = ((*win)->Maxima  - y) * (*win)->Ima_scale;
-	//tmp = ( y - (*win)->w_height /(*win)->Maxima - (*win)->Minima) * (*win)->Ima_scale;
-	//tmp = y * (*win)->Ima_scale;
-	(*win)->Minima+= tmp;
-	(*win)->Maxima = (*win)->Minima +((*win)->Maxreal - (*win)->Minreal) * ((*win)->w_height / (*win)->w_width); 
-	(*win)->Real_scale = ((*win)->Maxreal - (*win)->Minreal) / (*win)->w_width; // (*win)->w_width - 1
-	(*win)->Ima_scale = ((*win)->Maxima - (*win)->Minima) / (*win)->w_height; // (*win)->w_height - 1
-	
-	printf("minreal :%f | Max_real :%f\n",(*win)->Minreal,(*win)->Maxreal );
-	printf("minima :%f | Max_ima :%f\n",(*win)->Minima,(*win)->Maxima);
-	printf("Real_scale :%f | Ima_scale :%f\n",(*win)->Real_scale,(*win)->Ima_scale);
-	}
+
+}*/
 	if (m_code == 5)
 	{
+		double tmp_zoom;
+		tmp_zoom = (*win)->zoom_scale;
+		(*win)->zoom_scale *= 1.1;
+		(*win)->Minreal += (x / tmp_zoom) - ( x / (*win)->zoom_scale);
+		(*win)->Minima += (y / tmp_zoom) - ( y / (*win)->zoom_scale);
+		(*win)->Real_scale = ((*win)->Maxreal - (*win)->Minreal) / (*win)->w_width; // (*win)->w_width - 1
+		(*win)->Ima_scale = ((*win)->Maxima - (*win)->Minima) / (*win)->w_height; // (*win)->w_height - 1
+		//(*win)->Max_it += 5;
 		/*
 		(*win)->x = x - ( x - (*win)->w_width /2) * 1.1;
 		(*win)->y = y - ( y - (*win)->w_height /2) * 1.1;
@@ -65,6 +55,13 @@ int mouse_control(int m_code, int x, int y, t_lst_display **win)
 	}
 	if (m_code == 4 && ((*win)->zoom_scale > 1))
 	{
+		double tmp_zoom;
+		tmp_zoom = (*win)->zoom_scale;
+		(*win)->zoom_scale /= 1.1;
+		(*win)->Minreal += (x / tmp_zoom) - ( x / (*win)->zoom_scale);
+		(*win)->Minima += (y / tmp_zoom) - ( y / (*win)->zoom_scale);
+		(*win)->Real_scale = ((*win)->Maxreal - (*win)->Minreal) / (*win)->w_width; // (*win)->w_width - 1
+		(*win)->Ima_scale = ((*win)->Maxima - (*win)->Minima) / (*win)->w_height; // (*win)->w_height - 1
 		/*
 		(*win)->x = x - ( x - (*win)->w_width/2) / 1.1;
 		(*win)->y = y - ( y - (*win)->w_height/2) / 1.1;
@@ -75,5 +72,31 @@ int mouse_control(int m_code, int x, int y, t_lst_display **win)
 	}
 	
 	refresh_image(win);
+	return (0);
+}
+
+/*
+**              #######################################
+**              ################# Move ################
+**              #######################################
+**
+** Get the input and change the value of position of the object
+** Keycode 124 = 'Arrow  right'
+** Keycode 123 = 'Arrow  left'
+** Keycode 125 = 'Arrow  down'
+** Keycode 126 = 'Arrow  up'
+*/
+
+int	move(int keycode, t_lst_display **param)
+{
+	if (keycode == 124)
+		(*param)->Minreal += 8/ (*param)->zoom_scale ;
+	if (keycode == 123)
+		(*param)->Minreal -= 8/ (*param)->zoom_scale ;
+	if (keycode == 125)
+		(*param)->Minima -= 8/ (*param)->zoom_scale ;
+	if (keycode == 126)
+		(*param)->Minima += 8/ (*param)->zoom_scale ;
+	refresh_image(param);
 	return (0);
 }

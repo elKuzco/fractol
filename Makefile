@@ -15,6 +15,7 @@ SRC_NAME = $(SRC)main.c \
 			$(SRC)display.c\
 			$(SRC)mandelbrot.c\
 			$(SRC)inputs.c\
+			$(SRC)color.c\
 
 OBJ = $(SRC_NAME:.c=.o)
 
