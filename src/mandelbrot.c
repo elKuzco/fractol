@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/10 15:52:03 by qlouisia          #+#    #+#             */
-/*   Updated: 2019/11/14 12:16:01 by qlouisia         ###   ########.fr       */
+/*   Updated: 2019/11/14 16:34:37 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,13 @@ void initialise_fractal_mandel(t_lst_display **win)
 	(*win)->Maxima = (*win)->Minima +((*win)->Maxreal - (*win)->Minreal) * ((*win)->w_height / (*win)->w_width); 
 	(*win)->Real_scale = ((*win)->Maxreal - (*win)->Minreal) / (*win)->w_width; // (*win)->w_width - 1
 	(*win)->Ima_scale = ((*win)->Maxima - (*win)->Minima) / (*win)->w_height; // (*win)->w_height - 1
-	(*win)->Max_it = 100;
+	(*win)->Max_it = 60;
 	(*win)->zoom_scale = 250;
 	(*win)->pt_function = &mandelbrot;
-	(*win)->color = convert_rgb(0x0,255,0,0);
+	(*win)->color_mod = 1;
 	(*win)->x = (*win)->w_width / 2;
 	(*win)->y = (*win)->w_height / 2;
+	set_color_to_mode1(win);
 }
  
  int is_in_bulb(double c_re, double c_im)
@@ -98,7 +99,8 @@ void mandelbrot(t_lst_display **win)
 						Z_re = Z_re2 - Z_im2 + c_re;
 						i++;
 					}
-					color = convert_rgb(0x0, 0, 0,255*i / (*win)->Max_it);
+					//color = convert_rgb(0x0, 0, 0,255*i / (*win)->Max_it);
+					color = colormod(i, win);
 					fill_pix(win,x,y, color);
 				}
 				x++;

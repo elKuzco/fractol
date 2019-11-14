@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 16:46:10 by qlouisia          #+#    #+#             */
-/*   Updated: 2019/11/14 12:04:19 by qlouisia         ###   ########.fr       */
+/*   Updated: 2019/11/14 14:44:46 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ typedef struct s_lst_fractol
 	unsigned int color;
 	double x;
 	double y;
+	int color_mod;
+	unsigned int palette[16];
 	
 } t_lst_display;
 
@@ -47,7 +49,9 @@ void	refresh_image(t_lst_display **win);
 int quit_program(t_lst_display **env);
 int mouse_control(int m_code, int x, int y, t_lst_display **win);
 int	move(int keycode, t_lst_display **param);
+unsigned int colormod (int n, t_lst_display **win);
+void set_color_to_mode1(t_lst_display **win);
 unsigned int	convert_rgb(unsigned int a, unsigned int r, unsigned int g,
-	unsigned int b)
+	unsigned int b);
 #endif
 

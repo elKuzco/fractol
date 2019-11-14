@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 14:20:19 by qlouisia          #+#    #+#             */
-/*   Updated: 2019/11/14 11:59:42 by qlouisia         ###   ########.fr       */
+/*   Updated: 2019/11/14 15:49:45 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,12 @@ int	move(int keycode, t_lst_display **param)
 		(*param)->Minima -= 8/ (*param)->zoom_scale ;
 	if (keycode == 126)
 		(*param)->Minima += 8/ (*param)->zoom_scale ;
+	if (keycode == 12)
+		(*param)->color_mod = 2;
+	if (keycode == 13)
+		(*param)->color_mod = 1;
+	if (keycode == 14)
+		(*param)->color_mod = 3;
 	refresh_image(param);
 	return (0);
 }

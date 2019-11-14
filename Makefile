@@ -8,7 +8,8 @@ LDLIBS = -lft
 LIB_DIR = libft 
 MINILIBX = minilibx
 SRC = ./src/
-INCLUDE = ./include/fractol.h
+INCLUDE = ./include/fractol.h \
+			./include/colors.h \
 
 SRC_NAME = $(SRC)main.c \
 			$(SRC)initialise.c\
@@ -22,7 +23,7 @@ OBJ = $(SRC_NAME:.c=.o)
 $(NAME): $(OBJ)
 		cd $(LIB_DIR) && make
 		cd $(MINILIBX) && make
-		$(CC) $(OBJ) $(LDFLAGS) $(LDLIBS) -I $(INCLUDE) -o $@ -lmlx -lm -framework OpenGL -framework AppKit
+		$(CC) $(OBJ) $(LDFLAGS) $(LDLIBS) -o $@ -lmlx -lm -framework OpenGL -framework AppKit
 	
 all : $(NAME)
 
