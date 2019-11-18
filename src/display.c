@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/10 15:51:27 by qlouisia          #+#    #+#             */
-/*   Updated: 2019/11/18 13:05:39 by qlouisia         ###   ########.fr       */
+/*   Updated: 2019/11/18 19:10:08 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 #include "mlx.h"
 #include <stdlib.h>
 
+
+// a delet
+#include <stdio.h>
 void	print_ui(t_lst_display **env)
 {
 	char *rotz;
@@ -48,8 +51,7 @@ void	refresh_image(t_lst_display **win)
 		(*win)->data[i] = 0;
 		i++;
 	}
-	
-	(*win)->pt_function(win);
+	initialise_thread(win);
 	mlx_clear_window((*win)->mlx_ptr, (*win)->win_ptr);
 	mlx_put_image_to_window((*win)->mlx_ptr, (*win)->win_ptr,
 	(*win)->img_ptr, 0, 0);

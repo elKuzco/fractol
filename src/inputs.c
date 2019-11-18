@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 14:20:19 by qlouisia          #+#    #+#             */
-/*   Updated: 2019/11/18 13:05:46 by qlouisia         ###   ########.fr       */
+/*   Updated: 2019/11/18 19:06:19 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,34 +29,22 @@ int quit_program(t_lst_display **env)
 
 int mouse_control(int m_code, int x, int y, t_lst_display **win)
 {
-
+	double tmp_zoom;
+	tmp_zoom = (*win)->zoom_scale;
 	if (m_code == 5)
 	{
-		double tmp_zoom;
-		tmp_zoom = (*win)->zoom_scale;
 		(*win)->zoom_scale *= 1.1;
-		(*win)->Minreal += (x / tmp_zoom) - ( x / (*win)->zoom_scale);
-		(*win)->Minima += (y / tmp_zoom) - ( y / (*win)->zoom_scale);
-		(*win)->Real_scale = ((*win)->Maxreal - (*win)->Minreal) / (*win)->display_w; // (*win)->display_w - 1
-		(*win)->Ima_scale = ((*win)->Maxima - (*win)->Minima) / (*win)->display_h; // (*win)->display_h - 1
-		if ((*win)->Max_it++ < 120)
-			(*win)->Max_it++;
-		else 
-			(*win)->Max_it = 60;
+		(*win)->Max_it++;
 	}
 	if (m_code == 4 && ((*win)->zoom_scale > 1))
 	{
-		double tmp_zoom;
-		tmp_zoom = (*win)->zoom_scale;
 		(*win)->zoom_scale /= 1.1;
-		(*win)->Minreal += (x / tmp_zoom) - ( x / (*win)->zoom_scale);
-		(*win)->Minima += (y / tmp_zoom) - ( y / (*win)->zoom_scale);
-		(*win)->Real_scale = ((*win)->Maxreal - (*win)->Minreal) / (*win)->display_w; // (*win)->display_w - 1
-		(*win)->Ima_scale = ((*win)->Maxima - (*win)->Minima) / (*win)->display_h; // (*win)->display_h - 1
-		if ((*win)->Max_it > 65)
-			(*win)->Max_it--;
+		(*win)->Max_it--;
 	}
-	
+	(*win)->Minreal += (x / tmp_zoom) - ( x / (*win)->zoom_scale);
+	(*win)->Minima += (y / tmp_zoom) - ( y / (*win)->zoom_scale);
+	(*win)->Real_scale = ((*win)->Maxreal - (*win)->Minreal) / (*win)->display_w; 
+	(*win)->Ima_scale = ((*win)->Maxima - (*win)->Minima) / (*win)->display_h; 
 	refresh_image(win);
 	return (0);
 }
@@ -98,7 +86,7 @@ int	move(int keycode, t_lst_display **param)
 	}
 	if (keycode == 69)
 	{
-		if ((*param)->Max_it < 300)
+		if ((*param)->Max_it < 1000)
 			(*param)->Max_it += 5;
 	}
 	if (keycode == 78)
