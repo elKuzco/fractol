@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/10 15:52:03 by qlouisia          #+#    #+#             */
-/*   Updated: 2019/11/14 16:34:37 by qlouisia         ###   ########.fr       */
+/*   Updated: 2019/11/18 13:05:55 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,15 @@ void initialise_fractal_mandel(t_lst_display **win)
 {	(*win)->Minreal = -2.0;
 	(*win)->Minima = -1.2;
 	(*win)->Maxreal = 1.0;
-	(*win)->Maxima = (*win)->Minima +((*win)->Maxreal - (*win)->Minreal) * ((*win)->w_height / (*win)->w_width); 
-	(*win)->Real_scale = ((*win)->Maxreal - (*win)->Minreal) / (*win)->w_width; // (*win)->w_width - 1
-	(*win)->Ima_scale = ((*win)->Maxima - (*win)->Minima) / (*win)->w_height; // (*win)->w_height - 1
+	(*win)->Maxima = (*win)->Minima +((*win)->Maxreal - (*win)->Minreal) * ((*win)->display_h / (*win)->display_w); 
+	(*win)->Real_scale = ((*win)->Maxreal - (*win)->Minreal) / (*win)->display_w; // (*win)->display_w - 1
+	(*win)->Ima_scale = ((*win)->Maxima - (*win)->Minima) / (*win)->display_h; // (*win)->display_h - 1
 	(*win)->Max_it = 60;
 	(*win)->zoom_scale = 250;
 	(*win)->pt_function = &mandelbrot;
 	(*win)->color_mod = 1;
-	(*win)->x = (*win)->w_width / 2;
-	(*win)->y = (*win)->w_height / 2;
 	set_color_to_mode1(win);
+	refresh_image(win);
 }
  
  int is_in_bulb(double c_re, double c_im)
@@ -69,12 +68,12 @@ void mandelbrot(t_lst_display **win)
 
 	y = 0;
 	
-	while (y < (*win)->w_height)
+	while (y < (*win)->display_h)
 	{
 		c_im = y / (*win)->zoom_scale + (*win)->Minima;
 		//c_im = (*win)->Maxima - y * (*win)->Ima_scale;
 		x = 0;
-		while (x < (*win)->w_width)
+		while (x < (*win)->display_w)
 		{
 				c_re = x / (*win)->zoom_scale + (*win)->Minreal;
 				//c_re = (*win)->Minreal + x * (*win)->Real_scale;
@@ -89,14 +88,18 @@ void mandelbrot(t_lst_display **win)
 					Z_im = c_im;
 					while (i < (*win)->Max_it)
 					{
-						Z_re2 = pow(Z_re,2);
-						Z_im2 = pow(Z_im,2);
+						Z_re2 = Z_re * Z_re;
+						Z_im2 = Z_im * Z_im;
 						if (Z_re2 + Z_im2  > 4)
 						{
 							break;
 						}
-						Z_im = 2 * Z_re * Z_im + c_im;
+						Z_im = Z_re * Z_im;
+						Z_im += Z_im;
+						Z_im += c_im;
 						Z_re = Z_re2 - Z_im2 + c_re;
+						Z_re2 = sqrt(Z_re);
+						Z_im2 = sqrt(Z_im);
 						i++;
 					}
 					//color = convert_rgb(0x0, 0, 0,255*i / (*win)->Max_it);

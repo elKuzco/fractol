@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 16:34:21 by qlouisia          #+#    #+#             */
-/*   Updated: 2019/11/14 11:36:29 by qlouisia         ###   ########.fr       */
+/*   Updated: 2019/11/15 11:48:17 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int		expose_hook(t_lst_display **win)
 void display(void *ser, t_lst_display **win)
 {
 	(*win)->pt_function(win);
-	mlx_expose_hook((*win)->win_ptr, expose_hook, win);
+	//mlx_expose_hook((*win)->win_ptr, expose_hook, win);
 	mlx_hook((*win)->win_ptr, 17, 1L << 17, quit_program, win);
 	mlx_hook((*win)->win_ptr, 2, 3, move, win);
 	mlx_mouse_hook((*win)->win_ptr,mouse_control,win);

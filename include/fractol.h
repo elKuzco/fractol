@@ -6,13 +6,16 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 16:46:10 by qlouisia          #+#    #+#             */
-/*   Updated: 2019/11/14 14:44:46 by qlouisia         ###   ########.fr       */
+/*   Updated: 2019/11/18 13:01:37 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 #define FRACTOL_H
 
+
+#define WINDOW_WIDTH 800
+#define WINDOW_HEIGHT 800 
 typedef struct s_lst_fractol 
 {
 	void *img_ptr;
@@ -22,8 +25,8 @@ typedef struct s_lst_fractol
 	int endian;
 	void *mlx_ptr;
 	void *win_ptr;
-	int w_width;
-	int w_height;
+	int display_w;
+	int display_h;
 	void (*pt_function)(struct s_lst_fractol **);
 	double Minreal;
 	double Minima;
@@ -33,13 +36,12 @@ typedef struct s_lst_fractol
 	double Ima_scale;
 	int Max_it;
 	double zoom_scale;
-	unsigned int color;
-	double x;
-	double y;
 	int color_mod;
 	unsigned int palette[16];
-	
+	int palettte_size;
 } t_lst_display;
+
+
 
 int initialise_graphic(t_lst_display **win, void *mlx_serv, char *tittle);
 void initialise_fractal_mandel(t_lst_display **win);
@@ -53,5 +55,6 @@ unsigned int colormod (int n, t_lst_display **win);
 void set_color_to_mode1(t_lst_display **win);
 unsigned int	convert_rgb(unsigned int a, unsigned int r, unsigned int g,
 	unsigned int b);
+void set_color_to_rainbow(t_lst_display **win);
 #endif
 

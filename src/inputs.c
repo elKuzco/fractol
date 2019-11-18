@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 14:20:19 by qlouisia          #+#    #+#             */
-/*   Updated: 2019/11/14 15:49:45 by qlouisia         ###   ########.fr       */
+/*   Updated: 2019/11/18 13:05:46 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,6 @@ int quit_program(t_lst_display **env)
 int mouse_control(int m_code, int x, int y, t_lst_display **win)
 {
 
-	/*
-	if (m_code == 1)
-	{
-
-}*/
 	if (m_code == 5)
 	{
 		double tmp_zoom;
@@ -42,16 +37,12 @@ int mouse_control(int m_code, int x, int y, t_lst_display **win)
 		(*win)->zoom_scale *= 1.1;
 		(*win)->Minreal += (x / tmp_zoom) - ( x / (*win)->zoom_scale);
 		(*win)->Minima += (y / tmp_zoom) - ( y / (*win)->zoom_scale);
-		(*win)->Real_scale = ((*win)->Maxreal - (*win)->Minreal) / (*win)->w_width; // (*win)->w_width - 1
-		(*win)->Ima_scale = ((*win)->Maxima - (*win)->Minima) / (*win)->w_height; // (*win)->w_height - 1
-		//(*win)->Max_it += 5;
-		/*
-		(*win)->x = x - ( x - (*win)->w_width /2) * 1.1;
-		(*win)->y = y - ( y - (*win)->w_height /2) * 1.1;
-		printf("x :%f | y :%f\n",(*win)->x,(*win)->y );
-		(*win)->zoom_scale *= 1.1;
-		(*win)->Max_it += 3;
-		printf("Zoom :%f\n",(*win)->zoom_scale);*/
+		(*win)->Real_scale = ((*win)->Maxreal - (*win)->Minreal) / (*win)->display_w; // (*win)->display_w - 1
+		(*win)->Ima_scale = ((*win)->Maxima - (*win)->Minima) / (*win)->display_h; // (*win)->display_h - 1
+		if ((*win)->Max_it++ < 120)
+			(*win)->Max_it++;
+		else 
+			(*win)->Max_it = 60;
 	}
 	if (m_code == 4 && ((*win)->zoom_scale > 1))
 	{
@@ -60,15 +51,10 @@ int mouse_control(int m_code, int x, int y, t_lst_display **win)
 		(*win)->zoom_scale /= 1.1;
 		(*win)->Minreal += (x / tmp_zoom) - ( x / (*win)->zoom_scale);
 		(*win)->Minima += (y / tmp_zoom) - ( y / (*win)->zoom_scale);
-		(*win)->Real_scale = ((*win)->Maxreal - (*win)->Minreal) / (*win)->w_width; // (*win)->w_width - 1
-		(*win)->Ima_scale = ((*win)->Maxima - (*win)->Minima) / (*win)->w_height; // (*win)->w_height - 1
-		/*
-		(*win)->x = x - ( x - (*win)->w_width/2) / 1.1;
-		(*win)->y = y - ( y - (*win)->w_height/2) / 1.1;
-		printf("x :%f | y :%f\n",(*win)->x,(*win)->y );
-		(*win)->zoom_scale /= 1.1;
-		(*win)->Max_it -= 3;
-		printf("Zoom :%f\n",(*win)->zoom_scale);*/
+		(*win)->Real_scale = ((*win)->Maxreal - (*win)->Minreal) / (*win)->display_w; // (*win)->display_w - 1
+		(*win)->Ima_scale = ((*win)->Maxima - (*win)->Minima) / (*win)->display_h; // (*win)->display_h - 1
+		if ((*win)->Max_it > 65)
+			(*win)->Max_it--;
 	}
 	
 	refresh_image(win);
@@ -99,10 +85,27 @@ int	move(int keycode, t_lst_display **param)
 		(*param)->Minima += 8/ (*param)->zoom_scale ;
 	if (keycode == 12)
 		(*param)->color_mod = 2;
-	if (keycode == 13)
+	if (keycode == 13){
 		(*param)->color_mod = 1;
+		set_color_to_mode1(param);
+	}
 	if (keycode == 14)
 		(*param)->color_mod = 3;
+	if (keycode == 15)
+	{
+		set_color_to_rainbow(param);
+		(*param)->color_mod = 4;
+	}
+	if (keycode == 69)
+	{
+		if ((*param)->Max_it < 300)
+			(*param)->Max_it += 5;
+	}
+	if (keycode == 78)
+	{
+		if ((*param)->Max_it > 10)
+			(*param)->Max_it -= 5;
+	}
 	refresh_image(param);
 	return (0);
 }
