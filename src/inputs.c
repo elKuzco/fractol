@@ -15,37 +15,36 @@
 #include "mlx.h"
 
 #include <stdio.h>
-int quit_program(t_lst_display **env)
+int quit_program(t_lst_display *env)
 {
-	if ((*env)->win_ptr)
+	if (env->win_ptr)
 	{
-		mlx_destroy_image((*env)->mlx_ptr, (*env)->display_img_ptr);
-		mlx_destroy_image((*env)->mlx_ptr, (*env)->ui_img_ptr);
-		mlx_destroy_window((*env)->mlx_ptr, (*env)->win_ptr);
+		mlx_destroy_image(env->mlx_ptr, env->display_img_ptr);
+		mlx_destroy_image(env->mlx_ptr, env->ui_img_ptr);
+		mlx_destroy_window(env->mlx_ptr, env->win_ptr);
 	}
-	free(*env);
 	exit(0);
 }
 
 
-int mouse_control(int m_code, int x, int y, t_lst_display **win)
+int mouse_control(int m_code, int x, int y, t_lst_display *win)
 {
 	double tmp_zoom;
-	tmp_zoom = (*win)->zoom_scale;
+	tmp_zoom = win->zoom_scale;
 	if (m_code == 5)
 	{
-		(*win)->zoom_scale *= 1.1;
-		(*win)->Max_it++;
+		win->zoom_scale *= 1.1;
+		win->Max_it++;
 	}
-	if (m_code == 4 && ((*win)->zoom_scale > 1))
+	if (m_code == 4 && (win->zoom_scale > 1))
 	{
-		(*win)->zoom_scale /= 1.1;
-		(*win)->Max_it--;
+		win->zoom_scale /= 1.1;
+		win->Max_it--;
 	}
-	(*win)->Minreal += (x / tmp_zoom) - ( x / (*win)->zoom_scale);
-	(*win)->Minima += (y / tmp_zoom) - ( y / (*win)->zoom_scale);
-	(*win)->Real_scale = ((*win)->Maxreal - (*win)->Minreal) / (*win)->display_w; 
-	(*win)->Ima_scale = ((*win)->Maxima - (*win)->Minima) / (*win)->display_h; 
+	win->Minreal += (x / tmp_zoom) - ( x / win->zoom_scale);
+	win->Minima += (y / tmp_zoom) - ( y / win->zoom_scale);
+	win->Real_scale = (win->Maxreal - win->Minreal) / win->display_w; 
+	win->Ima_scale = (win->Maxima - win->Minima) / win->display_h; 
 	refresh_image(win);
 	return (0);
 }
@@ -62,38 +61,38 @@ int mouse_control(int m_code, int x, int y, t_lst_display **win)
 ** Keycode 126 = 'Arrow  up'
 */
 
-int	move(int keycode, t_lst_display **param)
+int	move(int keycode, t_lst_display *param)
 {
 	if (keycode == 124)
-		(*param)->Minreal += 8/ (*param)->zoom_scale ;
+		param->Minreal += 8/ param->zoom_scale ;
 	if (keycode == 123)
-		(*param)->Minreal -= 8/ (*param)->zoom_scale ;
+		param->Minreal -= 8/ param->zoom_scale ;
 	if (keycode == 125)
-		(*param)->Minima -= 8/ (*param)->zoom_scale ;
+		param->Minima -= 8/ param->zoom_scale ;
 	if (keycode == 126)
-		(*param)->Minima += 8/ (*param)->zoom_scale ;
+		param->Minima += 8/ param->zoom_scale ;
 	if (keycode == 12)
-		(*param)->color_mod = 2;
+		param->color_mod = 2;
 	if (keycode == 13){
-		(*param)->color_mod = 1;
+		param->color_mod = 1;
 		set_color_to_mode1(param);
 	}
 	if (keycode == 14)
-		(*param)->color_mod = 3;
+		param->color_mod = 3;
 	if (keycode == 15)
 	{
 		set_color_to_rainbow(param);
-		(*param)->color_mod = 4;
+		param->color_mod = 4;
 	}
 	if (keycode == 69)
 	{
-		if ((*param)->Max_it < 1000)
-			(*param)->Max_it += 5;
+		if (param->Max_it < 1000)
+			param->Max_it += 5;
 	}
 	if (keycode == 78)
 	{
-		if ((*param)->Max_it > 10)
-			(*param)->Max_it -= 5;
+		if (param->Max_it > 10)
+			param->Max_it -= 5;
 	}
 	refresh_image(param);
 	return (0);

@@ -17,18 +17,15 @@
 
 int initialise_graphic(t_lst_display *win, void *mlx_serv, char *tittle)
 {
-	if (!(*win = (t_lst_display*)malloc(sizeof(t_lst_display))))
-		return (0);
-	
-	(*win)->mlx_ptr = mlx_serv;
-	(*win)->display_w = DISPLAY_WIDTH;
-	(*win)->display_h = DISPLAY_HEIGHT;
-	(*win)->win_ptr = mlx_new_window((*win)->mlx_ptr, WINDOW_WIDTH,WINDOW_HEIGHT, tittle);
-	(*win)->display_img_ptr = mlx_new_image(mlx_serv,(*win)->display_w,(*win)->display_h);
-	(*win)->data_display = (int *)mlx_get_data_addr((*win)->display_img_ptr,&(*win)->bpp,&(*win)->size_l,&(*win)->endian);
-	(*win)->ui_img_ptr = mlx_new_image(mlx_serv,WINDOW_WIDTH ,WINDOW_HEIGHT - DISPLAY_HEIGHT);
-	(*win)->data_ui = (int *)mlx_get_data_addr((*win)->ui_img_ptr,&(*win)->bpp,&(*win)->size_l,&(*win)->endian);
-	(*win)->zoom_scale = 100; // previously 1
+	win->mlx_ptr = mlx_serv;
+	win->display_w = DISPLAY_WIDTH;
+	win->display_h = DISPLAY_HEIGHT;
+	win->win_ptr = mlx_new_window(win->mlx_ptr, WINDOW_WIDTH,WINDOW_HEIGHT, tittle);
+	win->display_img_ptr = mlx_new_image(mlx_serv,win->display_w,win->display_h);
+	win->data_display = (int *)mlx_get_data_addr(win->display_img_ptr,&win->bpp,&win->size_l,&win->endian);
+	win->ui_img_ptr = mlx_new_image(mlx_serv,WINDOW_WIDTH ,WINDOW_HEIGHT - DISPLAY_HEIGHT);
+	win->data_ui = (int *)mlx_get_data_addr(win->ui_img_ptr,&win->bpp,&win->size_l,&win->endian);
+	win->zoom_scale = 100; // previously 1
 	return(1);
 }
 

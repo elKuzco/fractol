@@ -16,17 +16,17 @@
 //  a retirer
 #include  <stdio.h>
 
-void initialise_fractal_mandel(t_lst_display **win)
-{	(*win)->Minreal = -2.0;
-	(*win)->Minima = -1.2;
-	(*win)->Maxreal = 1.0;
-	(*win)->Maxima = (*win)->Minima +((*win)->Maxreal - (*win)->Minreal) * ((*win)->display_h / (*win)->display_w); 
-	(*win)->Real_scale = ((*win)->Maxreal - (*win)->Minreal) / (*win)->display_w; // (*win)->display_w - 1
-	(*win)->Ima_scale = ((*win)->Maxima - (*win)->Minima) / (*win)->display_h; // (*win)->display_h - 1
-	(*win)->Max_it = 60;
-	(*win)->zoom_scale = 250;
-	(*win)->pt_function = &mandelbrot;
-	(*win)->color_mod = 1;
+void initialise_fractal_mandel(t_lst_display *win)
+{	win->Minreal = -2.0;
+	win->Minima = -1.2;
+	win->Maxreal = 1.0;
+	win->Maxima = win->Minima +(win->Maxreal - win->Minreal) * (win->display_h / win->display_w); 
+	win->Real_scale = (win->Maxreal - win->Minreal) / win->display_w; // win->display_w - 1
+	win->Ima_scale = (win->Maxima - win->Minima) / win->display_h; // win->display_h - 1
+	win->Max_it = 60;
+	win->zoom_scale = 250;
+	win->pt_function = &mandelbrot;
+	win->color_mod = 1;
 	set_color_to_mode1(win);
 	refresh_image(win);
 }
@@ -45,7 +45,7 @@ void initialise_fractal_mandel(t_lst_display **win)
  }
  
  
- int mandelbrot_compute(t_lst_display **win, double c_im, int x)
+ int mandelbrot_compute(t_lst_display *win, double c_im, int x)
  {
 	double c_re;
  	double Z_re;
@@ -56,12 +56,12 @@ void initialise_fractal_mandel(t_lst_display **win)
 	
 	
 	i = 0;
-	c_re = x / (*win)->zoom_scale + (*win)->Minreal;
+	c_re = x / win->zoom_scale + win->Minreal;
 	if (is_in_bulb(c_re, c_im) == 0)
 	{
 		Z_re = c_re;
 		Z_im = c_im;
-		while (i < (*win)->Max_it)
+		while (i < win->Max_it)
 		{
 			Z_re2 = Z_re * Z_re;
 			Z_im2 = Z_im * Z_im;
@@ -89,18 +89,18 @@ void initialise_fractal_mandel(t_lst_display **win)
  */
  
  /*
- int mandelbrot_compute(t_lst_display **win, double c_im, int x)
+ int mandelbrot_compute(t_lst_display *win, double c_im, int x)
  {
 	double tab[5];
 	int i;
 	
 	i = 0;
-	tab[0] = x / (*win)->zoom_scale + (*win)->Minreal;
+	tab[0] = x / win->zoom_scale + win->Minreal;
 	if (is_in_bulb(tab[0], c_im) == 0)
 	{
 		tab[1] = tab[0];
 		tab[2] = c_im;
-		while (i < (*win)->Max_it)
+		while (i < win->Max_it)
 		{
 			tab[3] = tab[1] * tab[1];
 			tab[4] = tab[2] * tab[2];
@@ -125,7 +125,7 @@ void initialise_fractal_mandel(t_lst_display **win)
 
 
 
-void mandelbrot(t_lst_display **win, int start )
+void mandelbrot(t_lst_display *win, int start )
 {
 	int x;
 	int y;
@@ -134,10 +134,10 @@ void mandelbrot(t_lst_display **win, int start )
 	int xmax;
 
 	y = 0;
-	xmax = start + (*win)->display_w / THREAD_NUMBER;
-	while (y < (*win)->display_h)
+	xmax = start + win->display_w / THREAD_NUMBER;
+	while (y < win->display_h)
 	{
-		c_im = y / (*win)->zoom_scale + (*win)->Minima;
+		c_im = y / win->zoom_scale + win->Minima;
 		x = start;
 		while (x < xmax)
 		{
@@ -150,7 +150,7 @@ void mandelbrot(t_lst_display **win, int start )
 }
 
 /*
-void mandelbrot(t_lst_display **win, int start )
+void mandelbrot(t_lst_display *win, int start )
 {
 	int x;
 	int y;
@@ -165,20 +165,20 @@ void mandelbrot(t_lst_display **win, int start )
 	int xmax;
 
 	y = 0;
-	xmax = start + (*win)->display_w / THREAD_NUMBER;
-	while (y < (*win)->display_h)
+	xmax = start + win->display_w / THREAD_NUMBER;
+	while (y < win->display_h)
 	{
-		c_im = y / (*win)->zoom_scale + (*win)->Minima;
+		c_im = y / win->zoom_scale + win->Minima;
 		x = start;
 		while (x < xmax)
 		{
-				c_re = x / (*win)->zoom_scale + (*win)->Minreal;
+				c_re = x / win->zoom_scale + win->Minreal;
 				if (is_in_bulb(c_re, c_im) == 0)
 				{
 					i = 0;
 					Z_re = c_re;
 					Z_im = c_im;
-					while (i < (*win)->Max_it)
+					while (i < win->Max_it)
 					{
 						Z_re2 = Z_re * Z_re;
 						Z_im2 = Z_im * Z_im;

@@ -21,28 +21,28 @@
 #include <stdio.h>
 
 
-void	fill_pix(t_lst_display **img, int x, int y, int color)
+void	fill_pix(t_lst_display *img, int x, int y, int color)
 {
-	if ((x < (*img)->display_w) && (x >= 0)
-		&& (y < (*img)->display_h) && (y >= 0))
+	if ((x < img->display_w) && (x >= 0)
+		&& (y < img->display_h) && (y >= 0))
 	{
-		(*img)->data_display[y * (*img)->display_w + x] = color;
+		img->data_display[y * img->display_w + x] = color;
 	}
 }
 
-void	fill_pix_ui(t_lst_display **img, int x, int y, int color)
+void	fill_pix_ui(t_lst_display *img, int x, int y, int color)
 {
 	if ((x < WINDOW_WIDTH) && (x >= 0)
 		&& (y < WINDOW_HEIGHT) && (y >= 0))
 	{
-		(*img)->data_ui[y * WINDOW_WIDTH+ x] = color;
+		img->data_ui[y * WINDOW_WIDTH+ x] = color;
 	}
 }
 
-void draw_background(t_lst_display **win, int y, int x, unsigned int color)
+void draw_background(t_lst_display *win, int y, int x, unsigned int color)
 {
 	y = 0;
-	while (y < WINDOW_HEIGHT)
+	while (y < WINDOW_HEIGHT - DISPLAY_HEIGHT)
 	{
 		x = 0;
 		while (x < WINDOW_WIDTH)
@@ -54,37 +54,38 @@ void draw_background(t_lst_display **win, int y, int x, unsigned int color)
 	}
 }
 
-void print_command(t_lst_display **win) 
+void print_command(t_lst_display *win) 
 {
-	mlx_string_put((*win)->mlx_ptr, (*win)->win_ptr, 330, 950, GREEN_UI, "Instructions :");
-	mlx_string_put((*win)->mlx_ptr, (*win)->win_ptr, 330, 955, GREEN_UI, "____________");
-	mlx_string_put((*win)->mlx_ptr, (*win)->win_ptr, 30, 1000, GREEN_UI, "Zoom : Wheel");
-	mlx_string_put((*win)->mlx_ptr, (*win)->win_ptr, 30, 1020, GREEN_UI, "Mouse : Arrow");
-	mlx_string_put((*win)->mlx_ptr, (*win)->win_ptr, 30, 1040, GREEN_UI, "Change Color : Q/W/E/R");
+	mlx_string_put(win->mlx_ptr, win->win_ptr, 330, 950, GREEN_UI, "Instructions :");
+	mlx_string_put(win->mlx_ptr, win->win_ptr, 330, 955, GREEN_UI, "____________");
+	mlx_string_put(win->mlx_ptr, win->win_ptr, 30, 1000, GREEN_UI, "Zoom : Wheel");
+	mlx_string_put(win->mlx_ptr, win->win_ptr, 30, 1020, GREEN_UI, "Mouse : Arrow");
+	mlx_string_put(win->mlx_ptr, win->win_ptr, 30, 1040, GREEN_UI, "Change Color : Q/W/E/R");
+	//mlx_string_put(win->mlx_ptr, win->win_ptr, 30, 1040, GREEN_UI, "Change Color : Q/W/E/R");
 }
 
-void	print_ui(t_lst_display **env)
+void	print_ui(t_lst_display *env)
 {
 	char *iter;
 	char *color;
 	char *zoom;
 	
-	if ((*env)->color_mod == 2)
+	if (env->color_mod == 2)
 		color = "Blood Strain";
-	else if ((*env)->color_mod == 1)
+	else if (env->color_mod == 1)
 		color = "Polarized";
-	else if ((*env)->color_mod == 3)
+	else if (env->color_mod == 3)
 		color = "Matrix";
 	else 
 		color = "Rainbow";
-	iter = ft_itoa((*env)->Max_it);
-	zoom = ft_itoa((*env)->zoom_scale / 100);
-	mlx_string_put((*env)->mlx_ptr, (*env)->win_ptr, 30, 820, GREEN_UI, "Iteration Max: ");
-	mlx_string_put((*env)->mlx_ptr, (*env)->win_ptr, 180, 820, GREEN_UI, iter);
-	mlx_string_put((*env)->mlx_ptr, (*env)->win_ptr, 590, 820, GREEN_UI, "Color : ");
-	mlx_string_put((*env)->mlx_ptr, (*env)->win_ptr, 665, 820, GREEN_UI, color);
-	mlx_string_put((*env)->mlx_ptr, (*env)->win_ptr, 30, 850, GREEN_UI, "Zoom : x");
-	mlx_string_put((*env)->mlx_ptr, (*env)->win_ptr, 112, 850, GREEN_UI, zoom);
+	iter = ft_itoa(env->Max_it);
+	zoom = ft_itoa(env->zoom_scale / 100);
+	mlx_string_put(env->mlx_ptr, env->win_ptr, 30, 820, GREEN_UI, "Iteration Max: ");
+	mlx_string_put(env->mlx_ptr, env->win_ptr, 180, 820, GREEN_UI, iter);
+	mlx_string_put(env->mlx_ptr, env->win_ptr, 590, 820, GREEN_UI, "Color : ");
+	mlx_string_put(env->mlx_ptr, env->win_ptr, 665, 820, GREEN_UI, color);
+	mlx_string_put(env->mlx_ptr, env->win_ptr, 30, 850, GREEN_UI, "Zoom : x");
+	mlx_string_put(env->mlx_ptr, env->win_ptr, 112, 850, GREEN_UI, zoom);
 	print_command(env); 
 	free(iter);
 	free(zoom);
@@ -92,25 +93,25 @@ void	print_ui(t_lst_display **env)
 }
 
 
-void	refresh_image(t_lst_display **win)
+void	refresh_image(t_lst_display *win)
 {
 	int i;
 	int n;
 
-	n = (*win)->display_w * (*win)->display_h;
+	n = win->display_w * win->display_h;
 	i = 0;
 	while (i < n)
 	{
-		(*win)->data_display[i] = 0;
+		win->data_display[i] = 0;
 		i++;
 	}
 	initialise_thread(win);
-	//mlx_clear_window((*win)->mlx_ptr, (*win)->win_ptr);
-	mlx_put_image_to_window((*win)->mlx_ptr, (*win)->win_ptr,
-	(*win)->display_img_ptr, 0, 0);
-	draw_background((win), (*win)->display_h, 0, GREY_UI);
-	mlx_put_image_to_window((*win)->mlx_ptr, (*win)->win_ptr,
-	(*win)->ui_img_ptr,0, DISPLAY_HEIGHT );
+	//mlx_clear_window(win->mlx_ptr, win->win_ptr);
+	mlx_put_image_to_window(win->mlx_ptr, win->win_ptr,
+	win->display_img_ptr, 0, 0);
+	draw_background((win), win->display_h, 0, GREY_UI);
+	mlx_put_image_to_window(win->mlx_ptr, win->win_ptr,
+	win->ui_img_ptr,0, DISPLAY_HEIGHT );
 	print_ui(win);
 
 }

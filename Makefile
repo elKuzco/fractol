@@ -1,8 +1,7 @@
 .PHONY: all, clean, fclean, re
 	
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -g3 -fsanitize=address
-#penser a retirer le g3
+CFLAGS = -Wall -Werror -Wextra -g3
 NAME = fractol
 LDFLAGS = -Llibft
 LDLIBS = -lft
@@ -19,6 +18,7 @@ SRC_NAME = $(SRC)main.c \
 			$(SRC)inputs.c\
 			$(SRC)color.c\
 			$(SRC)threads.c\
+			$(SRC)Julia.c\
 
 OBJ = $(SRC_NAME:.c=.o)
 

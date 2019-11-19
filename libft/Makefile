@@ -15,7 +15,7 @@ SRCDIR = ./
 INCDIR = ./
 CC = gcc
 CFLAGS += -Wall -Werror -Wextra -g3
-#penser a retirer g3
+
 RM = rm -f
 SRCS = $(SRCDIR)ft_strlen.c \
 	   $(SRCDIR)ft_bzero.c \

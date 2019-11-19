@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 16:46:10 by qlouisia          #+#    #+#             */
-/*   Updated: 2019/11/19 14:52:12 by qlouisia         ###   ########.fr       */
+/*   Updated: 2019/11/19 20:15:16 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,15 @@ typedef struct s_lst_fractol
 	int display_w;
 	int display_h;
 	pthread_t id_tread[THREAD_NUMBER];
-	void (*pt_function)(struct s_lst_fractol **, int);
+	void (*pt_function)(struct s_lst_fractol *, int);
 	double Minreal;
 	double Minima;
 	double Maxreal;
 	double Maxima; 
 	double Real_scale;
 	double Ima_scale;
+	double julia_re;
+	double julia_im;
 	int Max_it;
 	double zoom_scale;
 	int color_mod;
@@ -51,19 +53,21 @@ typedef struct s_lst_fractol
 	int palettte_size;
 } t_lst_display;
 
-int initialise_graphic(t_lst_display **win, void *mlx_serv, char *tittle);
-void initialise_fractal_mandel(t_lst_display **win);
-void	fill_pix(t_lst_display **img, int x, int y, int color);
-void mandelbrot(t_lst_display **win, int start );
-void	refresh_image(t_lst_display **win);
-int quit_program(t_lst_display **env);
-int mouse_control(int m_code, int x, int y, t_lst_display **win);
-int	move(int keycode, t_lst_display **param);
-unsigned int colormod (int n, t_lst_display **win);
-void set_color_to_mode1(t_lst_display **win);
+int initialise_graphic(t_lst_display *win, void *mlx_serv, char *tittle);
+void initialise_fractal_mandel(t_lst_display *win);
+void	fill_pix(t_lst_display *img, int x, int y, int color);
+void mandelbrot(t_lst_display *win, int start );
+void initialise_fractal_julia(t_lst_display *win);
+void julia(t_lst_display *win, int start );
+void	refresh_image(t_lst_display *win);
+int quit_program(t_lst_display *env);
+int mouse_control(int m_code, int x, int y, t_lst_display *win);
+int	move(int keycode, t_lst_display *param);
+unsigned int colormod (int n, t_lst_display *win);
+void set_color_to_mode1(t_lst_display *win);
 unsigned int	convert_rgb(unsigned int a, unsigned int r, unsigned int g,
 	unsigned int b);
-void set_color_to_rainbow(t_lst_display **win);
-int initialise_thread(t_lst_display **win);
+void set_color_to_rainbow(t_lst_display *win);
+int initialise_thread(t_lst_display *win);
 #endif
 

@@ -12,7 +12,7 @@
 
 #include "../include/fractol.h"
 
-void  *thread_manage(t_lst_display **win)
+void  *thread_manage(t_lst_display *win)
 {
 	pthread_t me;
 	int i;
@@ -20,28 +20,28 @@ void  *thread_manage(t_lst_display **win)
 	
 	i = 0;
 	me = pthread_self();
-	while (me != (*win)->id_tread[i])
+	while (me != win->id_tread[i])
 		i++;
-	start = i * (*win)->display_w / THREAD_NUMBER;
-	(*win)->pt_function(win,start );
+	start = i * win->display_w / THREAD_NUMBER;
+	win->pt_function(win,start );
 	pthread_exit(NULL);
 }
 
-int initialise_thread(t_lst_display **win)
+int initialise_thread(t_lst_display *win)
 {
 	int i;
 
 	i = 0;
 	while ( i < THREAD_NUMBER) 
 	{
-		if (pthread_create( &(*win)->id_tread[i], NULL,(void *) thread_manage, win))
+		if (pthread_create( &win->id_tread[i], NULL,(void *) thread_manage, win))
 			return (quit_program(win));
 		i++;
 	}
 	i = 0;
 	while (i < THREAD_NUMBER)
 	{
-		pthread_join((*win)->id_tread[i],NULL);
+		pthread_join(win->id_tread[i],NULL);
 		i++;
 	}
 	return(1);
