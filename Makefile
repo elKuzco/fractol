@@ -1,7 +1,8 @@
 .PHONY: all, clean, fclean, re
 	
 CC = gcc
-CFLAGS = #-Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -g3 -fsanitize=address
+#penser a retirer le g3
 NAME = fractol
 LDFLAGS = -Llibft
 LDLIBS = -lft
@@ -21,10 +22,10 @@ SRC_NAME = $(SRC)main.c \
 
 OBJ = $(SRC_NAME:.c=.o)
 
-$(NAME): $(OBJ)
+$(NAME): $(OBJ) Makefile $(INCLUDE)
 		cd $(LIB_DIR) && make
 		cd $(MINILIBX) && make
-		$(CC) $(OBJ) $(LDFLAGS) $(LDLIBS) -o $@ -lpthread -lmlx -lm -framework OpenGL -framework AppKit
+		$(CC) $(CFLAGS) $(OBJ) $(LDFLAGS) $(LDLIBS) -o $@ -lmlx -lm -framework OpenGL -framework AppKit
 	
 all : $(NAME)
 

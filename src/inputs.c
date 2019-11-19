@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 14:20:19 by qlouisia          #+#    #+#             */
-/*   Updated: 2019/11/18 19:06:19 by qlouisia         ###   ########.fr       */
+/*   Updated: 2019/11/19 15:03:27 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ int quit_program(t_lst_display **env)
 {
 	if ((*env)->win_ptr)
 	{
-		mlx_destroy_image((*env)->mlx_ptr, (*env)->img_ptr);
+		mlx_destroy_image((*env)->mlx_ptr, (*env)->display_img_ptr);
+		mlx_destroy_image((*env)->mlx_ptr, (*env)->ui_img_ptr);
 		mlx_destroy_window((*env)->mlx_ptr, (*env)->win_ptr);
 	}
 	free(*env);

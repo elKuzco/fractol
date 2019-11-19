@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 16:46:10 by qlouisia          #+#    #+#             */
-/*   Updated: 2019/11/18 19:34:26 by qlouisia         ###   ########.fr       */
+/*   Updated: 2019/11/19 14:52:12 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,10 @@
 
 typedef struct s_lst_fractol 
 {
-	void *img_ptr;
-	int *data;
+	void *display_img_ptr;
+	int *data_display;
+	int *data_ui;
+	void *ui_img_ptr;
 	int size_l;
 	int bpp;
 	int endian;

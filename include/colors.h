@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 13:47:41 by qlouisia          #+#    #+#             */
-/*   Updated: 2019/11/14 16:57:16 by qlouisia         ###   ########.fr       */
+/*   Updated: 2019/11/19 16:44:26 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,21 @@
 #define BROWN_1 10049280
 #define BROWN_2 6960131
 
-#define NE_RED 0xFF0000;
-#define NE_ORANGE 0xFF8000; // yellow neon
-#define NE_YELLOW 0xFFFF00; //
-#define NE_YGREEN 0x80FF00; //
-#define NE_GREEN 0x00FF00; //
-#define NE_BGREEN 0x00FF80; //
-#define NE_GBLUE 0x00FFFF; 
-#define NE_BLUE 0x0080FF; 
-#define NE_PBLUE 0x0000FF; 
-#define NE_PURPLE 0x7F00FF; 
-#define NE_PINK 0xFF00FF; 
-#define NE_RPINK 0xFF007F; 
+#define NE_RED 0xFF0000
+#define NE_ORANGE 0xFF8000
+#define NE_YELLOW 0xFFFF00
+#define NE_YGREEN 0x80FF00
+#define NE_GREEN 0x00FF00
+#define NE_BGREEN 0x00FF80
+#define NE_GBLUE 0x00FFFF
+#define NE_BLUE 0x0080FF
+#define NE_PBLUE 0x0000FF
+#define NE_PURPLE 0x7F00FF
+#define NE_PINK 0xFF00FF
+#define NE_RPINK 0xFF007F
+
+#define GREY_UI 1315860
+#define GREEN_UI 65280
 
 
 #endif

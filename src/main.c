@@ -51,10 +51,10 @@ void display(void *ser, t_lst_display **win)
 
 int main(int argc, char **argv)
 {
-	t_lst_display *win;
+	t_lst_display win;
 	void *mlx_serv;
 	
-	
+
 	mlx_serv = mlx_init();
 	(void)argv;
 	

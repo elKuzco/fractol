@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/10 15:52:03 by qlouisia          #+#    #+#             */
-/*   Updated: 2019/11/18 19:56:25 by qlouisia         ###   ########.fr       */
+/*   Updated: 2019/11/19 13:50:09 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,6 @@ void initialise_fractal_mandel(t_lst_display **win)
  }
  
  
- 
- /*
  int mandelbrot_compute(t_lst_display **win, double c_im, int x)
  {
 	double c_re;
@@ -55,6 +53,7 @@ void initialise_fractal_mandel(t_lst_display **win)
  	double Z_re2;
  	double Z_im2;
 	int i;
+	
 	
 	i = 0;
 	c_re = x / (*win)->zoom_scale + (*win)->Minreal;
@@ -79,6 +78,49 @@ void initialise_fractal_mandel(t_lst_display **win)
  }
  return (i);
 }
+ 
+ 
+ /*
+ ** tab[0] = c_re
+ ** tab[1] = Z_re
+ ** tab[2] = Z_im
+ ** tab[3] = Z_re2
+ ** tab[4] = Z_im2
+ */
+ 
+ /*
+ int mandelbrot_compute(t_lst_display **win, double c_im, int x)
+ {
+	double tab[5];
+	int i;
+	
+	i = 0;
+	tab[0] = x / (*win)->zoom_scale + (*win)->Minreal;
+	if (is_in_bulb(tab[0], c_im) == 0)
+	{
+		tab[1] = tab[0];
+		tab[2] = c_im;
+		while (i < (*win)->Max_it)
+		{
+			tab[3] = tab[1] * tab[1];
+			tab[4] = tab[2] * tab[2];
+			if (tab[3] + tab[4]  > 4)
+				break;
+			tab[2] = tab[1] * tab[2];
+			tab[2] += tab[2];
+			tab[2] += c_im;
+			tab[1] = tab[3] - tab[4] + tab[0];
+			tab[3] = sqrt(tab[1]);
+			tab[4] = sqrt(tab[2]);
+			i++;
+		}
+ }
+ return (i);
+}
+*/
+/*			Z_im = Z_re * Z_im;
+			Z_im += Z_im;
+			Z_im += c_im;*/
 
 
 
@@ -87,7 +129,6 @@ void mandelbrot(t_lst_display **win, int start )
 {
 	int x;
 	int y;
-	int i;
 	double c_im;
 	unsigned int color;
 	int xmax;
@@ -100,15 +141,15 @@ void mandelbrot(t_lst_display **win, int start )
 		x = start;
 		while (x < xmax)
 		{
-			i = mandelbrot_compute(win, c_im,x);
-			color = colormod(i, win);
+			color = colormod(mandelbrot_compute(win, c_im,x), win);
 			fill_pix(win,x,y, color);
+			x++;
 		}
-		x++;
+		y++;
 	}
-	y++;
 }
-*/
+
+/*
 void mandelbrot(t_lst_display **win, int start )
 {
 	int x;
@@ -158,4 +199,4 @@ void mandelbrot(t_lst_display **win, int start )
 		}
 		y++;
 	}
-}
+}*/
