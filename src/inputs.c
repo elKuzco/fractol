@@ -31,21 +31,24 @@ int mouse_control(int m_code, int x, int y, t_lst_display *win)
 {
 	double tmp_zoom;
 	tmp_zoom = win->zoom_scale;
-	if (m_code == 5)
+	if (x < DISPLAY_WIDTH && y < DISPLAY_HEIGHT)
 	{
-		win->zoom_scale *= 1.1;
-		win->Max_it++;
+		if (m_code == 5)
+		{
+			win->zoom_scale *= 1.1;
+			win->Max_it++;
+		}
+		if (m_code == 4 && (win->zoom_scale > 1))
+		{
+			win->zoom_scale /= 1.1;
+			win->Max_it--;
+		}
+		win->Minreal += (x / tmp_zoom) - ( x / win->zoom_scale);
+		win->Minima += (y / tmp_zoom) - ( y / win->zoom_scale);
+		win->Real_scale = (win->Maxreal - win->Minreal) / win->display_w; 
+		win->Ima_scale = (win->Maxima - win->Minima) / win->display_h;
+		refresh_image(win);
 	}
-	if (m_code == 4 && (win->zoom_scale > 1))
-	{
-		win->zoom_scale /= 1.1;
-		win->Max_it--;
-	}
-	win->Minreal += (x / tmp_zoom) - ( x / win->zoom_scale);
-	win->Minima += (y / tmp_zoom) - ( y / win->zoom_scale);
-	win->Real_scale = (win->Maxreal - win->Minreal) / win->display_w; 
-	win->Ima_scale = (win->Maxima - win->Minima) / win->display_h; 
-	refresh_image(win);
 	return (0);
 }
 
@@ -61,8 +64,21 @@ int mouse_control(int m_code, int x, int y, t_lst_display *win)
 ** Keycode 126 = 'Arrow  up'
 */
 
+ int motion_hook(int x, int y, t_lst_display *win)
+ {
+	 	if (win->julia_mod_enable == true)
+		{
+			win->julia_re = x / win->zoom_scale + win->Minreal;
+			win->julia_im = y / win->zoom_scale + win->Minima;
+
+		} 
+		refresh_image(win);
+		return(0);
+ }
+
 int	move(int keycode, t_lst_display *param)
 {
+	printf("keycode : %d\n", keycode);
 	if (keycode == 124)
 		param->Minreal += 8/ param->zoom_scale ;
 	if (keycode == 123)
@@ -71,18 +87,36 @@ int	move(int keycode, t_lst_display *param)
 		param->Minima -= 8/ param->zoom_scale ;
 	if (keycode == 126)
 		param->Minima += 8/ param->zoom_scale ;
-	if (keycode == 12)
+	if (keycode == 18)
 		param->color_mod = 2;
-	if (keycode == 13){
+	if (keycode == 19){
 		param->color_mod = 1;
 		set_color_to_mode1(param);
 	}
-	if (keycode == 14)
+	if (keycode == 20)
 		param->color_mod = 3;
-	if (keycode == 15)
+	if (keycode == 21)
 	{
 		set_color_to_rainbow(param);
 		param->color_mod = 4;
+	}
+	if (keycode == 15)
+	{
+	param->Minreal = -2.0;
+	param->Minima = -1.2;
+	param->Maxreal = 1.0;
+	param->Maxima = param->Minima +(param->Maxreal - param->Minreal) * (param->display_h / param->display_w); 
+	param->Real_scale = (param->Maxreal - param->Minreal) / param->display_w; 
+	param->Ima_scale = (param->Maxima - param->Minima) / param->display_h; 
+	param->Max_it = 60;
+	param->zoom_scale = 250;
+	}
+	if (keycode == 16)
+	{
+		if (param->julia_mod_enable == false)
+			param->julia_mod_enable = true;
+		else 
+			param->julia_mod_enable = false;
 	}
 	if (keycode == 69)
 	{

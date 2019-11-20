@@ -17,6 +17,7 @@
 
 int initialise_graphic(t_lst_display *win, void *mlx_serv, char *tittle)
 {
+	ft_bzero(win,sizeof(t_lst_display));
 	win->mlx_ptr = mlx_serv;
 	win->display_w = DISPLAY_WIDTH;
 	win->display_h = DISPLAY_HEIGHT;
@@ -25,7 +26,9 @@ int initialise_graphic(t_lst_display *win, void *mlx_serv, char *tittle)
 	win->data_display = (int *)mlx_get_data_addr(win->display_img_ptr,&win->bpp,&win->size_l,&win->endian);
 	win->ui_img_ptr = mlx_new_image(mlx_serv,WINDOW_WIDTH ,WINDOW_HEIGHT - DISPLAY_HEIGHT);
 	win->data_ui = (int *)mlx_get_data_addr(win->ui_img_ptr,&win->bpp,&win->size_l,&win->endian);
-	win->zoom_scale = 100; // previously 1
+	win->zoom_scale = 250;
+	win->color_mod = 1;
+	win->Max_it = 60;
 	return(1);
 }
 

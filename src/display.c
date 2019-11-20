@@ -60,8 +60,9 @@ void print_command(t_lst_display *win)
 	mlx_string_put(win->mlx_ptr, win->win_ptr, 330, 955, GREEN_UI, "____________");
 	mlx_string_put(win->mlx_ptr, win->win_ptr, 30, 1000, GREEN_UI, "Zoom : Wheel");
 	mlx_string_put(win->mlx_ptr, win->win_ptr, 30, 1020, GREEN_UI, "Mouse : Arrow");
-	mlx_string_put(win->mlx_ptr, win->win_ptr, 30, 1040, GREEN_UI, "Change Color : Q/W/E/R");
-	//mlx_string_put(win->mlx_ptr, win->win_ptr, 30, 1040, GREEN_UI, "Change Color : Q/W/E/R");
+	mlx_string_put(win->mlx_ptr, win->win_ptr, 30, 1040, GREEN_UI, "Change Color : 1/2/3/4");
+	mlx_string_put(win->mlx_ptr, win->win_ptr, 30, 1060, GREEN_UI, "Reset : R");
+	mlx_string_put(win->mlx_ptr, win->win_ptr, 30, 1080, GREEN_UI, "Julia modification : Y");
 }
 
 void	print_ui(t_lst_display *env)
@@ -86,6 +87,10 @@ void	print_ui(t_lst_display *env)
 	mlx_string_put(env->mlx_ptr, env->win_ptr, 665, 820, GREEN_UI, color);
 	mlx_string_put(env->mlx_ptr, env->win_ptr, 30, 850, GREEN_UI, "Zoom : x");
 	mlx_string_put(env->mlx_ptr, env->win_ptr, 112, 850, GREEN_UI, zoom);
+	if (env->julia_mod_enable == true)
+		mlx_string_put(env->mlx_ptr, env->win_ptr, 30, 880, GREEN_UI, "Mode julia : On");
+	else 
+		mlx_string_put(env->mlx_ptr, env->win_ptr, 30, 880, GREEN_UI, "Mode julia : Off");
 	print_command(env); 
 	free(iter);
 	free(zoom);

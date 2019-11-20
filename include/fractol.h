@@ -14,7 +14,7 @@
 #define FRACTOL_H
 
 #include <pthread.h>
-
+#include "../libft/libft.h"
 #define WINDOW_WIDTH 800
 #define WINDOW_HEIGHT 1200
 #define THREAD_NUMBER 4 
@@ -44,6 +44,7 @@ typedef struct s_lst_fractol
 	double Maxima; 
 	double Real_scale;
 	double Ima_scale;
+	t_bool julia_mod_enable;
 	double julia_re;
 	double julia_im;
 	int Max_it;
@@ -69,5 +70,6 @@ unsigned int	convert_rgb(unsigned int a, unsigned int r, unsigned int g,
 	unsigned int b);
 void set_color_to_rainbow(t_lst_display *win);
 int initialise_thread(t_lst_display *win);
+ int motion_hook(int x, int y, t_lst_display *win);
 #endif
 

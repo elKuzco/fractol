@@ -21,11 +21,12 @@ void initialise_fractal_mandel(t_lst_display *win)
 	win->Minima = -1.2;
 	win->Maxreal = 1.0;
 	win->Maxima = win->Minima +(win->Maxreal - win->Minreal) * (win->display_h / win->display_w); 
-	win->Real_scale = (win->Maxreal - win->Minreal) / win->display_w; // win->display_w - 1
-	win->Ima_scale = (win->Maxima - win->Minima) / win->display_h; // win->display_h - 1
+	win->Real_scale = (win->Maxreal - win->Minreal) / win->display_w; 
+	win->Ima_scale = (win->Maxima - win->Minima) / win->display_h; 
 	win->Max_it = 60;
 	win->zoom_scale = 250;
 	win->pt_function = &mandelbrot;
+	win->julia_mod_enable = false;
 	win->color_mod = 1;
 	set_color_to_mode1(win);
 	refresh_image(win);

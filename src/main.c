@@ -44,6 +44,7 @@ void display(void *ser, t_lst_display *win)
 	//mlx_expose_hook(win->win_ptr, expose_hook, win);
 	mlx_hook(win->win_ptr, 17, 1L << 17, quit_program, win);
 	mlx_hook(win->win_ptr, 2, 3, move, win);
+	mlx_hook(win->win_ptr, 6, 0, motion_hook, win);
 	mlx_mouse_hook(win->win_ptr,mouse_control,win);
 	
 //	mlx_hook(win->win_ptr, 6, 1L < 6, get_input, win); // 4, 0
@@ -61,7 +62,7 @@ int main(int argc, char **argv)
 	
 	if (argc < 2 || argc >3 || !(initialise_graphic(&win, mlx_serv, argv[1])))
 		return (0);
-	// initialise_fractal_mandel(&win);
-	initialise_fractal_julia(&win);
+	 initialise_fractal_mandel(&win);
+	//initialise_fractal_julia(&win);
 	display(mlx_serv, &win);
 }

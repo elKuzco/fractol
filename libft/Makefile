@@ -14,7 +14,7 @@ NAME = libft.a
 SRCDIR = ./
 INCDIR = ./
 CC = gcc
-CFLAGS += -Wall -Werror -Wextra -g3
+CFLAGS += -Wall -Werror -Wextra 
 
 RM = rm -f
 SRCS = $(SRCDIR)ft_strlen.c \
