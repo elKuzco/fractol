@@ -100,6 +100,8 @@ int	move(int keycode, t_lst_display *param)
 		set_color_to_rainbow(param);
 		param->color_mod = 4;
 	}
+	if (keycode == 53)
+		quit_program(param);
 	if (keycode == 15)
 	{
 	param->Minreal = -2.0;

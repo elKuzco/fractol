@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 16:46:10 by qlouisia          #+#    #+#             */
-/*   Updated: 2019/11/19 20:15:16 by qlouisia         ###   ########.fr       */
+/*   Updated: 2019/11/21 12:56:28 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,11 @@ void	fill_pix(t_lst_display *img, int x, int y, int color);
 void mandelbrot(t_lst_display *win, int start );
 void initialise_fractal_julia(t_lst_display *win);
 void julia(t_lst_display *win, int start );
+void initialise_fractal_hazard(t_lst_display *win);
+void hazard(t_lst_display *win, int start );
+void initialise_fractal_tricorn(t_lst_display *win);
+void tricorn(t_lst_display *win, int start );
+
 void	refresh_image(t_lst_display *win);
 int quit_program(t_lst_display *env);
 int mouse_control(int m_code, int x, int y, t_lst_display *win);
