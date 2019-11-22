@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 16:34:21 by qlouisia          #+#    #+#             */
-/*   Updated: 2019/11/22 13:44:33 by qlouisia         ###   ########.fr       */
+/*   Updated: 2019/11/22 20:49:18 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,13 @@ int main(int argc, char **argv)
 	
 	if (argc < 2 || argc >3 || !(initialise_graphic(&win, mlx_serv, argv[1])))
 		return (0);
-	initialise_fractal_hazard(&win);
+	//initialise_fractal_tricorn(&win);
+	//initialise_fractal_burningship(&win);
+	//initialise_fractal_mandel3(&win);
 	 //if ( !ft_strcmp(argv[1], "mandelbrot"))
 	// 	initialise_fractal_mandel(&win);
 	// else if ( !ft_strcmp(argv[1], "julia")) 
-	// 	initialise_fractal_julia(&win);
+	// initialise_fractal_julia3(&win);
+	initialise_fractal_julia(&win);
 	display(mlx_serv, &win);
 }

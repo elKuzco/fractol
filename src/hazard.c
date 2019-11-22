@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 11:21:46 by qlouisia          #+#    #+#             */
-/*   Updated: 2019/11/22 13:54:34 by qlouisia         ###   ########.fr       */
+/*   Updated: 2019/11/22 20:33:31 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void hazard(t_lst_display *win, int start )
 	double Z_im;
 	double Z_re2;
 	double Z_im2;
+	double tmp;
 	unsigned int color;
 	int xmax;
 
@@ -58,18 +59,22 @@ void hazard(t_lst_display *win, int start )
 		{
 				c_re = x / win->zoom_scale + win->Minreal;
 				i = 0;
-				Z_re = 0;
-				Z_im = 0;
+				Z_re = c_re;
+				Z_im = c_im;
+				tmp = c_re;
 				c_re = c_re/ (c_re * c_re + c_im * c_im);
-				c_im = (c_im/ (c_re * c_re + c_im * c_im) );
+				c_im = (c_im/ (tmp * tmp + c_im * c_im) );
 				while (i < win->Max_it)
 				{
 					Z_re2 = Z_re * Z_re;
 					Z_im2 = Z_im * Z_im;
-					if ((Z_re2 - Z_im2)  > 4)
+					if ((Z_re2 + Z_im2)  > 4)
 					 	break;
 					// Z_im = sinh(Z_im) + c_re;
 					// Z_re = sinh(Z_re) + c_im;
+					tmp = Z_re;
+					// Z_re = cos(Z_re) * cosh(Z_im);
+					// Z_im = (sin(tmp) * sinh(Z_im));
 					Z_re = cos(Z_re) * cosh(Z_im);
 					Z_im = (sin(Z_re) * sinh(Z_im));
 					// Z_re = cos(Z_re) * ((exp(Z_im)+ exp(-Z_im)) / 2);
@@ -86,7 +91,9 @@ void hazard(t_lst_display *win, int start )
 	}
 }
 
-/*void hazard(t_lst_display *win, int start )
+
+/*
+void hazard(t_lst_display *win, int start )
 {
 	int x;
 	int y;
@@ -97,6 +104,7 @@ void hazard(t_lst_display *win, int start )
 	double Z_im;
 	double Z_re2;
 	double Z_im2;
+	double tmp;
 	unsigned int color;
 	int xmax;
 
@@ -112,8 +120,7 @@ void hazard(t_lst_display *win, int start )
 				i = 0;
 				Z_re = c_re;
 				Z_im = c_im;
-				c_re = 1/( c_re * c_re - c_im * c_im);
-				c_im = 1/ (2 * c_re * c_im);
+				
 				while (i < win->Max_it)
 				{
 					Z_re2 = Z_re * Z_re;
@@ -122,8 +129,12 @@ void hazard(t_lst_display *win, int start )
 						break;
 					// Z_im = sinh(Z_im) + c_re;
 					// Z_re = sinh(Z_re) + c_im;
-					Z_re = sinh(Z_re) * cos(Z_im) + c_re;
-					Z_im = cosh(Z_re) * sin(Z_im) + c_im;
+					tmp = Z_re;
+					Z_re = (pow(Z_re,3) - 3* Z_re *pow(Z_im,2)) ;
+					Z_im = ((3* pow(tmp,2)*Z_im) - (pow(Z_im,3)));
+					Z_re += c_re;
+					Z_im += c_im;
+
 					i++;
 				}
 				color = colormod(i, win);

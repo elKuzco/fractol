@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 16:46:10 by qlouisia          #+#    #+#             */
-/*   Updated: 2019/11/21 12:56:28 by qlouisia         ###   ########.fr       */
+/*   Updated: 2019/11/22 20:45:26 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,15 @@ void initialise_fractal_hazard(t_lst_display *win);
 void hazard(t_lst_display *win, int start );
 void initialise_fractal_tricorn(t_lst_display *win);
 void tricorn(t_lst_display *win, int start );
+
+void burningship(t_lst_display *win, int start );
+void initialise_fractal_burningship(t_lst_display *win);
+
+void initialise_fractal_mandel3(t_lst_display *win);
+void mandel3(t_lst_display *win, int start );
+
+void julia3(t_lst_display *win, int start );
+void initialise_fractal_julia3(t_lst_display *win);
 
 void	refresh_image(t_lst_display *win);
 int quit_program(t_lst_display *env);

@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 19:45:06 by qlouisia          #+#    #+#             */
-/*   Updated: 2019/11/19 20:23:00 by qlouisia         ###   ########.fr       */
+/*   Updated: 2019/11/22 20:44:26 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void initialise_fractal_julia(t_lst_display *win)
 }
  
  
-
 void julia(t_lst_display *win, int start )
 {
 	int x;
