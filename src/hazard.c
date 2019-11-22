@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 11:21:46 by qlouisia          #+#    #+#             */
-/*   Updated: 2019/11/21 17:15:55 by qlouisia         ###   ########.fr       */
+/*   Updated: 2019/11/22 13:54:34 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void hazard(t_lst_display *win, int start )
 					Z_re2 = Z_re * Z_re;
 					Z_im2 = Z_im * Z_im;
 					if ((Z_re2 - Z_im2)  > 4)
-						break;
+					 	break;
 					// Z_im = sinh(Z_im) + c_re;
 					// Z_re = sinh(Z_re) + c_im;
 					Z_re = cos(Z_re) * cosh(Z_im);
@@ -75,7 +75,7 @@ void hazard(t_lst_display *win, int start )
 					// Z_re = cos(Z_re) * ((exp(Z_im)+ exp(-Z_im)) / 2);
 					// Z_im = (sin(Z_re) * ((exp(Z_im)-exp(-Z_im))/2));
 					Z_re += c_re; 
-					Z_im += c_im;
+					Z_im -= c_im;
 					i++;
 				}
 				color = colormod(i, win);
