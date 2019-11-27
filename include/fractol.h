@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 16:46:10 by qlouisia          #+#    #+#             */
-/*   Updated: 2019/11/22 20:45:26 by qlouisia         ###   ########.fr       */
+/*   Updated: 2019/11/27 12:29:03 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_lst_fractol
 	int display_h;
 	pthread_t id_tread[THREAD_NUMBER];
 	void (*pt_function)(struct s_lst_fractol *, int);
+	void (*pt_function_init)(struct s_lst_fractol *);
 	double Minreal;
 	double Minima;
 	double Maxreal;
