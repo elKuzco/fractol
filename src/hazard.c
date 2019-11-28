@@ -6,16 +6,13 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 11:21:46 by qlouisia          #+#    #+#             */
-/*   Updated: 2019/11/22 20:33:31 by qlouisia         ###   ########.fr       */
+/*   Updated: 2019/11/28 14:18:30 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../include/fractol.h"
 #include "../libft/libft.h"
 #include <math.h>
-//  a retirer
-#include  <stdio.h>
 
 void initialise_fractal_hazard(t_lst_display *win)
 {	win->Minreal = -2.0;
@@ -28,11 +25,10 @@ void initialise_fractal_hazard(t_lst_display *win)
 	win->zoom_scale = 250;
 	win->pt_function = &hazard;
 	win->julia_mod_enable = false;
-	win->color_mod = 1;
+	win->clr_m = 1;
 	set_color_to_mode1(win);
 	refresh_image(win);
 }
- 
  
 void hazard(t_lst_display *win, int start )
 {

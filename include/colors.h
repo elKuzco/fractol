@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 13:47:41 by qlouisia          #+#    #+#             */
-/*   Updated: 2019/11/19 16:44:26 by qlouisia         ###   ########.fr       */
+/*   Updated: 2019/11/27 14:39:43 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@
 #define NE_RPINK 0xFF007F
 
 #define GREY_UI 1315860
-#define GREEN_UI 65280
+#define G_UI 65280
 
 
 #endif

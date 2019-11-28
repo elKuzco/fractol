@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 16:46:10 by qlouisia          #+#    #+#             */
-/*   Updated: 2019/11/27 12:29:03 by qlouisia         ###   ########.fr       */
+/*   Updated: 2019/11/28 14:25:45 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,16 @@
 #define THREAD_NUMBER 4 
 #define DISPLAY_WIDTH 800 
 #define DISPLAY_HEIGHT 800
+#define INTMAX 2147483647
 
+typedef struct s_lst_complex
+{
+	double	c_re;
+	double	z_re;
+	double	z_im;
+	double	z_re2;
+	double	z_im2;
+} t_complex;
 
 
 typedef struct s_lst_fractol 
@@ -50,7 +59,7 @@ typedef struct s_lst_fractol
 	double julia_im;
 	int Max_it;
 	double zoom_scale;
-	int color_mod;
+	int clr_m;
 	unsigned int palette[16];
 	int palettte_size;
 } t_lst_display;
@@ -75,6 +84,8 @@ void mandel3(t_lst_display *win, int start );
 void julia3(t_lst_display *win, int start );
 void initialise_fractal_julia3(t_lst_display *win);
 
+
+void change_fractal(int keycode, t_lst_display *p);
 void	refresh_image(t_lst_display *win);
 int quit_program(t_lst_display *env);
 int mouse_control(int m_code, int x, int y, t_lst_display *win);
@@ -85,6 +96,10 @@ unsigned int	convert_rgb(unsigned int a, unsigned int r, unsigned int g,
 	unsigned int b);
 void set_color_to_rainbow(t_lst_display *win);
 int initialise_thread(t_lst_display *win);
- int motion_hook(int x, int y, t_lst_display *win);
+int motion_hook(int x, int y, t_lst_display *win);
+void	print_ui(t_lst_display *env);
+int		expose_hook(t_lst_display *win);
+void display(void *ser, t_lst_display *win);
+int		get_input(int keycode, t_lst_display *win);
+void draw_background(t_lst_display *win, int y, int x, unsigned int color);
 #endif
-

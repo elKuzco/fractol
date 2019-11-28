@@ -6,18 +6,15 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 12:02:52 by qlouisia          #+#    #+#             */
-/*   Updated: 2019/11/15 11:40:47 by qlouisia         ###   ########.fr       */
+/*   Updated: 2019/11/27 13:08:09 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fractol.h"
 #include "../include/colors.h"
-// a retirer
-#include <stdio.h>
 
-
-unsigned int	convert_rgb(unsigned int a, unsigned int r, unsigned int g,
-	unsigned int b)
+unsigned int	convert_rgb(unsigned int a, unsigned int r,
+				unsigned int g, unsigned int b)
 {
 	unsigned int nb;
 
@@ -32,74 +29,70 @@ unsigned int	convert_rgb(unsigned int a, unsigned int r, unsigned int g,
 	nb = ((a << 24) | (r << 16) | (g << 8) | (b));
 	return (nb);
 }
-void set_color_to_mode1(t_lst_display *win)
+
+void			set_color_to_mode1(t_lst_display *win)
 {
-	
 	win->palette[0] = BROWN_3;
 	win->palette[1] = DARK_VIOLET;
 	win->palette[2] = DARKEST_BLUE;
-	win->palette[3] =  BLUE_5;
+	win->palette[3] = BLUE_5;
 	win->palette[4] = BLUE_4;
 	win->palette[5] = BLUE_3;
 	win->palette[6] = BLUE_2;
 	win->palette[7] = BLUE_1;
 	win->palette[8] = BLUE_0;
-	win->palette[9] = BLUE_LIGHTEST; 
-	win->palette[10] = YELLOW_LIGHTEST; 
-	win->palette[11] = LIGHT_YELLOW; 
+	win->palette[9] = BLUE_LIGHTEST;
+	win->palette[10] = YELLOW_LIGHTEST;
+	win->palette[11] = LIGHT_YELLOW;
 	win->palette[12] = DIRTY_YELLOW;
 	win->palette[13] = BROWN_0;
 	win->palette[14] = BROWN_1;
 	win->palette[15] = BROWN_2;
-	win->palettte_size= 16;
-
+	win->palettte_size = 16;
 }
 
-void set_color_to_rainbow(t_lst_display *win)
+void			set_color_to_rainbow(t_lst_display *win)
 {
 	win->palette[0] = NE_RED;
-	win->palette[1] = NE_ORANGE; // yellow neon
-	win->palette[2] = NE_YELLOW; //
-	win->palette[3] = NE_YGREEN; //
-	win->palette[4] = NE_GREEN; //
-	win->palette[5] = NE_BGREEN; //
-	win->palette[6] = NE_GBLUE; 
-	win->palette[7] = NE_BLUE; 
-	win->palette[8] = NE_PBLUE; 
-	win->palette[9] = NE_PURPLE; 
-	win->palette[10] = NE_PINK; 
-	win->palette[11] = NE_RPINK; 
-	win->palettte_size= 10;
-
+	win->palette[1] = NE_ORANGE;
+	win->palette[2] = NE_YELLOW;
+	win->palette[3] = NE_YGREEN;
+	win->palette[4] = NE_GREEN;
+	win->palette[5] = NE_BGREEN;
+	win->palette[6] = NE_GBLUE;
+	win->palette[7] = NE_BLUE;
+	win->palette[8] = NE_PBLUE;
+	win->palette[9] = NE_PURPLE;
+	win->palette[10] = NE_PINK;
+	win->palette[11] = NE_RPINK;
+	win->palettte_size = 10;
 }
 
-unsigned int colormod (int n, t_lst_display *win)
+unsigned int	colormod(int n, t_lst_display *win)
 {
-	int i;
-	double r;
-	
-	if (win->color_mod == 1 || win->color_mod == 4)
+	int		i;
+	double	r;
+
+	if ((win->clr_m == 1 || win->clr_m == 4) && (n < win->Max_it && n > 0))
 	{
-	if (n < win->Max_it && n > 0) {
- 		i = n % win->palettte_size;
-    	return win->palette[i];
-		}
+		i = n % win->palettte_size;
+		return (win->palette[i]);
 	}
-	else if (win->color_mod == 2)
-	{	
+	else if (win->clr_m == 2)
+	{
 		r = n / win->Max_it;
 		if (r == 1.0)
-			return (convert_rgb(0x0, 255 * r, 0,0));
+			return (convert_rgb(0x0, 255 * r, 0, 0));
 	}
-	else if (win->color_mod == 3)
-	{	
+	else if (win->clr_m == 3)
+	{
 		r = (double)n / (double)win->Max_it;
 		if (r == 1.0)
-			return (convert_rgb(0x0, 0, 0,0));
+			return (convert_rgb(0x0, 0, 0, 0));
 		if (r > 0.5)
-			return (convert_rgb(0x0, 255 * r, 255,255 * r));
+			return (convert_rgb(0x0, 255 * r, 255, 255 * r));
 		else
 			return (convert_rgb(0x0, 0, 255 * r, 0));
 	}
-	return (convert_rgb(0x0, 0, 0,0));
+	return (convert_rgb(0x0, 0, 0, 0));
 }

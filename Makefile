@@ -23,7 +23,8 @@ SRC_NAME = $(SRC)main.c \
 			$(SRC)tricorn.c\
 			$(SRC)burningship.c\
 			$(SRC)mandelbrot3.c\
-			$(SRC)Julia3.c\
+			$(SRC)julia3.c\
+			$(SRC)ui.c\
 
 OBJ = $(SRC_NAME:.c=.o)
 
