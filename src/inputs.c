@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 14:20:19 by qlouisia          #+#    #+#             */
-/*   Updated: 2019/11/27 14:21:25 by qlouisia         ###   ########.fr       */
+/*   Updated: 2019/12/01 19:19:11 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ int		mouse_control(int m_code, int x, int y, t_lst_display *win)
 		if (m_code == 4 && (win->zoom_scale > 1))
 		{
 			win->zoom_scale /= 1.1;
-			win->Max_it--;
+			if (win->Max_it > 10)
+				win->Max_it--;
 		}
 		win->Minreal += (x / tmp_zoom) - (x / win->zoom_scale);
 		win->Minima += (y / tmp_zoom) - (y / win->zoom_scale);

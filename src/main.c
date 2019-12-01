@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 16:34:21 by qlouisia          #+#    #+#             */
-/*   Updated: 2019/11/28 14:02:54 by qlouisia         ###   ########.fr       */
+/*   Updated: 2019/12/01 19:08:06 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@ int	get_input(int keycode, t_lst_display *win)
 		return (quit_program(win));
 	if (keycode > 122 && keycode < 127)
 		move(keycode, win);
-	if (keycode > 14 && keycode < 79)
+	if (keycode > 14 && keycode < 79 && keycode != 49)
 		change_fractal(keycode, win);
+	if (keycode == 49)
+		color_wheel(win);
 	refresh_image(win);
 	return (0);
 }
@@ -30,7 +32,8 @@ int	print_usage(void)
 {
 	ft_putendl("Incorrect Usage :");
 	ft_putstr("./fractol + mandelbrot / julia /");
-	ft_putendl(" tricorn / burningship / mandelbrot3 / julia3");
+	ft_putstr("tricorn / burningship / mandelbrot3 / julia3 /");
+	ft_putendl("phoenix / feigenbaum / heart / hazard / pines ");
 	return (0);
 }
 
@@ -48,6 +51,16 @@ int	select_fractal(t_lst_display *win, char *input)
 		win->pt_function_init = &initialise_fractal_mandel3;
 	else if (!ft_strcmp(input, "julia3"))
 		win->pt_function_init = &initialise_fractal_julia3;
+	else if (!ft_strcmp(input, "feigenbaum"))
+		win->pt_function_init = &initialise_fractal_feigen;
+	else if (!ft_strcmp(input, "phoenix"))
+		win->pt_function_init = &initialise_fractal_phoenix;
+	else if (!ft_strcmp(input, "hazard"))
+		win->pt_function_init = &initialise_fractal_hazard;
+	else if (!ft_strcmp(input, "heart"))
+		win->pt_function_init = &initialise_fractal_heart;
+	else if (!ft_strcmp(input, "pines"))
+		win->pt_function_init = &initialise_fractal_pines;
 	else
 		return (0);
 	return (1);

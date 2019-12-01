@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 14:22:59 by qlouisia          #+#    #+#             */
-/*   Updated: 2019/11/28 14:30:12 by qlouisia         ###   ########.fr       */
+/*   Updated: 2019/12/01 14:34:28 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,30 +42,34 @@ void	draw_background(t_lst_display *win, int y, int x, unsigned int color)
 
 void	print_command(t_lst_display *w)
 {
-	mlx_string_put(w->mlx_ptr, w->win_ptr, 330, 950, G_UI, "Instructions :");
-	mlx_string_put(w->mlx_ptr, w->win_ptr, 330, 955, G_UI, "____________");
-	mlx_string_put(w->mlx_ptr, w->win_ptr, 30, 1000, G_UI, "Zoom : Wheel");
-	mlx_string_put(w->mlx_ptr, w->win_ptr, 30, 1020, G_UI, "Mouse : Arrow");
+	mlx_string_put(w->mlx_ptr, w->win_ptr, 330, 1010, G_UI, "Instructions :");
+	mlx_string_put(w->mlx_ptr, w->win_ptr, 330, 1015, G_UI, "____________");
+	mlx_string_put(w->mlx_ptr, w->win_ptr, 30, 1060, G_UI, "Zoom : Wheel");
+	mlx_string_put(w->mlx_ptr, w->win_ptr, 30, 1080, G_UI, "Mouse : Arrow");
 	mlx_string_put(w->mlx_ptr, w->win_ptr,
 	30, 1040, G_UI, "Change Color : 1/2/3/4");
-	mlx_string_put(w->mlx_ptr, w->win_ptr, 30, 1060, G_UI, "Reset : R");
-	mlx_string_put(w->mlx_ptr, w->win_ptr, 30, 1080, G_UI, "Change Julia : Y");
-	mlx_string_put(w->mlx_ptr, w->win_ptr, 30, 1100, G_UI,
+	mlx_string_put(w->mlx_ptr, w->win_ptr, 30, 1120, G_UI, "Reset : R");
+	mlx_string_put(w->mlx_ptr, w->win_ptr, 30, 1140, G_UI, "Change Julia : Y");
+	mlx_string_put(w->mlx_ptr, w->win_ptr, 30, 1160, G_UI,
 	"Change resolution : +/-");
 }
 
 void	check_zoom(t_lst_display *e)
 {
 	char	*zoom;
-	// if (e->zoom_scale < INTMAX)
-	// {
+
+	if (e->zoom_scale < INTMAX)
+	{
 		zoom = ft_itoa(e->zoom_scale / 100);
 		mlx_string_put(e->mlx_ptr, e->win_ptr, 30, 850, G_UI, "Zoom : x");
 		mlx_string_put(e->mlx_ptr, e->win_ptr, 112, 850, G_UI, zoom);
 		free(zoom);
-	// }	
-	// else 
-		// mlx_string_put(e->mlx_ptr, e->win_ptr, 30, 850, G_UI, "Zoom : Too Long");
+	}
+	else
+	{
+		mlx_string_put(e->mlx_ptr, e->win_ptr, 30, 850,
+		G_UI, "Zoom : Too Long");
+	}
 }
 
 void	print_ui(t_lst_display *e)

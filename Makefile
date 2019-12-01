@@ -18,13 +18,17 @@ SRC_NAME = $(SRC)main.c \
 			$(SRC)inputs.c\
 			$(SRC)color.c\
 			$(SRC)threads.c\
-			$(SRC)Julia.c\
+			$(SRC)julia.c\
 			$(SRC)hazard.c\
 			$(SRC)tricorn.c\
 			$(SRC)burningship.c\
 			$(SRC)mandelbrot3.c\
 			$(SRC)julia3.c\
 			$(SRC)ui.c\
+			$(SRC)phoenix.c\
+			$(SRC)feigenbaum.c\
+			$(SRC)heart.c\
+			$(SRC)pines.c\
 
 OBJ = $(SRC_NAME:.c=.o)
 

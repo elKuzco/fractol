@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 12:02:52 by qlouisia          #+#    #+#             */
-/*   Updated: 2019/11/27 13:08:09 by qlouisia         ###   ########.fr       */
+/*   Updated: 2019/12/01 16:50:15 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,4 +95,24 @@ unsigned int	colormod(int n, t_lst_display *win)
 			return (convert_rgb(0x0, 0, 255 * r, 0));
 	}
 	return (convert_rgb(0x0, 0, 0, 0));
+}
+
+void			color_wheel(t_lst_display *win)
+{
+	int	i;
+	int	tmp;
+
+	if ((win->clr_m == 1 || win->clr_m == 4))
+	{
+		i = 0;
+		tmp = win->palette[0];
+		while (i < win->palettte_size)
+		{
+			if (i == win->palettte_size - 1)
+				win->palette[i] = tmp;
+			else
+				win->palette[i] = win->palette[i + 1];
+			i++;
+		}
+	}
 }
