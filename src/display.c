@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/10 15:51:27 by qlouisia          #+#    #+#             */
-/*   Updated: 2019/11/28 13:58:45 by qlouisia         ###   ########.fr       */
+/*   Updated: 2019/12/02 19:08:59 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,11 @@ void	refresh_image(t_lst_display *win)
 	initialise_thread(win);
 	mlx_put_image_to_window(win->mlx_ptr, win->win_ptr,
 	win->display_img_ptr, 0, 0);
-	draw_background((win), win->display_h, 0, GREY_UI);
+	
+	//modificatiom
+	draw_background((win), win->display_h, 0, GREY_UI); // mis dans main pour etre appeler une fois
+	draw_buttons(win);
+	//
 	mlx_put_image_to_window(win->mlx_ptr, win->win_ptr,
 	win->ui_img_ptr, 0, DISPLAY_HEIGHT);
 	print_ui(win);

@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 19:45:06 by qlouisia          #+#    #+#             */
-/*   Updated: 2019/12/01 15:14:17 by qlouisia         ###   ########.fr       */
+/*   Updated: 2019/12/02 18:50:59 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	initialise_fractal_julia(t_lst_display *win)
 	win->julia_im = 100 / win->zoom_scale + win->Minima;
 	win->pt_function = &julia;
 	win->zoom_scale = 250;
+	win->pt_function_init = &initialise_fractal_julia;
 	win->julia_mod_enable = false;
 	set_color_to_mode1(win);
 	refresh_image(win);

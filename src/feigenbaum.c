@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/28 13:39:08 by qlouisia          #+#    #+#             */
-/*   Updated: 2019/12/01 19:17:59 by qlouisia         ###   ########.fr       */
+/*   Updated: 2019/12/02 19:38:04 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	initialise_fractal_feigen(t_lst_display *win)
 	win->julia_re = 414 / win->zoom_scale + win->Minreal;
 	win->julia_im = 522 / win->zoom_scale + win->Minima;
 	win->Max_it = 15;
+	win->pt_function_init = &initialise_fractal_feigen;
 	win->pt_function = &feigen;
 	win->julia_mod_enable = false;
 	set_color_to_mode1(win);

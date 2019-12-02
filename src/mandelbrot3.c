@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 20:34:59 by qlouisia          #+#    #+#             */
-/*   Updated: 2019/11/28 14:09:36 by qlouisia         ###   ########.fr       */
+/*   Updated: 2019/12/02 19:36:52 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	initialise_fractal_mandel3(t_lst_display *win)
 	win->zoom_scale = 250;
 	win->pt_function = &mandel3;
 	win->julia_mod_enable = false;
+	win->pt_function_init = &initialise_fractal_mandel3;
 	win->clr_m = 1;
 	set_color_to_mode1(win);
 	refresh_image(win);

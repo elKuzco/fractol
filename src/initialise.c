@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/10 13:42:02 by qlouisia          #+#    #+#             */
-/*   Updated: 2019/11/27 15:04:09 by qlouisia         ###   ########.fr       */
+/*   Updated: 2019/12/02 15:42:13 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@ int	initialise_graphic(t_lst_display *w, void *mlx_serv, char *tittle)
 	w->zoom_scale = 250;
 	w->clr_m = 1;
 	w->Max_it = 60;
+	initialise_button_lst(w);
 	return (1);
 }

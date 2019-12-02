@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 14:20:19 by qlouisia          #+#    #+#             */
-/*   Updated: 2019/12/01 19:19:11 by qlouisia         ###   ########.fr       */
+/*   Updated: 2019/12/02 18:45:31 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,10 @@ int		mouse_control(int m_code, int x, int y, t_lst_display *win)
 		win->Real_scale = (win->Maxreal - win->Minreal) / win->display_w;
 		win->Ima_scale = (win->Maxima - win->Minima) / win->display_h;
 		refresh_image(win);
+	}
+	else if (m_code == 1) 
+	{
+		check_for_button(win, x, y);
 	}
 	return (0);
 }

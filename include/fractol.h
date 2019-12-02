@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 16:46:10 by qlouisia          #+#    #+#             */
-/*   Updated: 2019/12/02 13:24:10 by qlouisia         ###   ########.fr       */
+/*   Updated: 2019/12/02 18:43:41 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@
 #define DISPLAY_WIDTH 800 
 #define DISPLAY_HEIGHT 800
 #define INTMAX 2147483647
-#define BUTTON_NUMBER 11;
+#define BUTTON_NUMBER 2
+#define BUTTON_HEIGHT 20
+#define BUTTON_WIDTH 60
+
 
 typedef struct s_lst_complex
 {
@@ -54,16 +57,10 @@ typedef struct s_lst_button
 {
 	int				x;
 	int				y;
-	unsigned int	color;
 	char 			*str;
+//	void 			(*pt_function_init)(struct s_lst_fractol *);
 
 } t_button;
-
-typedef struct s_lst_b
-{
-	t_button		button;
-	struct s_lst_b 	*next;
-}	t_lst_button;
 
 
 typedef struct s_lst_fractol 
@@ -96,7 +93,7 @@ typedef struct s_lst_fractol
 	int clr_m;
 	unsigned int palette[16];
 	int palettte_size;
-	t_lst_button button_lst[BUTTON_NUMBER];
+	t_button button_lst[BUTTON_NUMBER];
 	
 } t_lst_display;
 
@@ -143,4 +140,9 @@ void pines(t_lst_display *win, int start );
 void initialise_fractal_pines(t_lst_display *win);
 void	set_struct_comp(t_complex_trig *c, double c_im);
 void draw_background(t_lst_display *win, int y, int x, unsigned int color);
+void    initialise_button_lst(t_lst_display *win);
+void    draw_button(t_lst_display *w,t_button *butt);
+void    draw_buttons(t_lst_display *win);
+void	fill_pix_ui(t_lst_display *img, int x, int y, int color);
+int     check_for_button(t_lst_display *win, int x, int y);
 #endif

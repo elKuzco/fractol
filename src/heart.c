@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 19:48:02 by qlouisia          #+#    #+#             */
-/*   Updated: 2019/12/01 19:07:06 by qlouisia         ###   ########.fr       */
+/*   Updated: 2019/12/02 19:39:00 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	initialise_fractal_heart(t_lst_display *win)
 	win->Ima_scale = (win->Maxima - win->Minima) / win->display_h;
 	win->Max_it = 60;
 	win->zoom_scale = 250;
+	win->pt_function_init = &initialise_fractal_heart;
 	win->pt_function = &heart;
 	win->julia_mod_enable = false;
 	win->clr_m = 1;

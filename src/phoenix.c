@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 19:45:06 by qlouisia          #+#    #+#             */
-/*   Updated: 2019/12/02 12:03:22 by qlouisia         ###   ########.fr       */
+/*   Updated: 2019/12/02 19:38:21 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void initialise_fractal_phoenix(t_lst_display *win)
 	win->Ima_scale = (win->Maxima - win->Minima) / win->display_h;
 	win->julia_re = 0.56667;
 	win->julia_im = -0.5;
+	win->pt_function_init = &initialise_fractal_phoenix;
 	win->pt_function = &phoenix;
 	win->zoom_scale = 150;
 	win->julia_mod_enable = false;

@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/10 15:52:03 by qlouisia          #+#    #+#             */
-/*   Updated: 2019/11/28 11:34:24 by qlouisia         ###   ########.fr       */
+/*   Updated: 2019/12/02 18:51:15 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,12 @@ void	initialise_fractal_mandel(t_lst_display *win)
 	* (win->display_h / win->display_w);
 	win->Real_scale = (win->Maxreal - win->Minreal) / win->display_w;
 	win->Ima_scale = (win->Maxima - win->Minima) / win->display_h;
-	win->Max_it = 60;
+	win->Max_it = 30;
 	win->zoom_scale = 250;
 	win->pt_function = &mandelbrot;
 	win->julia_mod_enable = false;
 	win->clr_m = 1;
+	win->pt_function_init = &initialise_fractal_mandel;
 	set_color_to_mode1(win);
 	refresh_image(win);
 }

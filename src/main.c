@@ -6,13 +6,16 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 16:34:21 by qlouisia          #+#    #+#             */
-/*   Updated: 2019/12/01 19:08:06 by qlouisia         ###   ########.fr       */
+/*   Updated: 2019/12/02 18:02:44 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fractol.h"
 #include "../libft/libft.h"
 #include "mlx.h"
+
+// modifications
+#include "../include/colors.h"
 
 int	get_input(int keycode, t_lst_display *win)
 {
@@ -78,5 +81,8 @@ int	main(int argc, char **argv)
 	if (!select_fractal(&win, argv[1]))
 		return (print_usage());
 	win.pt_function_init(&win);
+	//mod
+	draw_background((&win), (&win)->display_h, 0, GREY_UI);
+	//
 	display(mlx_serv, &win);
 }

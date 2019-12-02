@@ -1,7 +1,7 @@
 .PHONY: all, clean, fclean, re
 	
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra 
+CFLAGS = -Wall -Werror -Wextra -g3 -fsanitize=address
 NAME = fractol
 LDFLAGS = -Llibft
 LDLIBS = -lft
@@ -29,6 +29,7 @@ SRC_NAME = $(SRC)main.c \
 			$(SRC)feigenbaum.c\
 			$(SRC)heart.c\
 			$(SRC)pines.c\
+			$(SRC)menu.c\
 
 OBJ = $(SRC_NAME:.c=.o)
 

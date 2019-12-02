@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 19:48:02 by qlouisia          #+#    #+#             */
-/*   Updated: 2019/11/28 13:55:32 by qlouisia         ###   ########.fr       */
+/*   Updated: 2019/12/02 19:37:27 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	initialise_fractal_burningship(t_lst_display *win)
 	win->Ima_scale = (win->Maxima - win->Minima) / win->display_h;
 	win->Max_it = 60;
 	win->zoom_scale = 250;
+	win->pt_function_init = &initialise_fractal_burningship;
 	win->pt_function = &burningship;
 	win->julia_mod_enable = false;
 	win->clr_m = 1;

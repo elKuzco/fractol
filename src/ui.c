@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 14:22:59 by qlouisia          #+#    #+#             */
-/*   Updated: 2019/12/01 14:34:28 by qlouisia         ###   ########.fr       */
+/*   Updated: 2019/12/02 19:12:08 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,10 @@ void	print_command(t_lst_display *w)
 	mlx_string_put(w->mlx_ptr, w->win_ptr, 30, 1140, G_UI, "Change Julia : Y");
 	mlx_string_put(w->mlx_ptr, w->win_ptr, 30, 1160, G_UI,
 	"Change resolution : +/-");
+	// mod
+	mlx_string_put(w->mlx_ptr, w->win_ptr,  5, 110 + DISPLAY_HEIGHT, G_UI, "Mandel");
+	mlx_string_put(w->mlx_ptr, w->win_ptr,  67, 110 + DISPLAY_HEIGHT, G_UI, "Julia");
+
 }
 
 void	check_zoom(t_lst_display *e)

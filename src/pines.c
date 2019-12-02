@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 11:21:46 by qlouisia          #+#    #+#             */
-/*   Updated: 2019/12/01 19:02:11 by qlouisia         ###   ########.fr       */
+/*   Updated: 2019/12/02 19:39:17 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	initialise_fractal_pines(t_lst_display *win)
 	win->Ima_scale = (win->Maxima - win->Minima) / win->display_h;
 	win->Max_it = 25;
 	win->zoom_scale = 30;
+	win->pt_function_init = &initialise_fractal_pines;
 	win->pt_function = &pines;
 	win->julia_mod_enable = false;
 	win->clr_m = 2;

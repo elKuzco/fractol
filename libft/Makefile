@@ -6,7 +6,7 @@
 #    By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/08 15:25:57 by qlouisia          #+#    #+#              #
-#    Updated: 2019/11/19 18:40:29 by qlouisia         ###   ########.fr        #
+#    Updated: 2019/12/02 16:13:33 by qlouisia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = libft.a
 SRCDIR = ./
 INCDIR = ./
 CC = gcc
-CFLAGS += -Wall -Werror -Wextra 
+CFLAGS += -Wall -Werror -Wextra -g3 -fsanitize=address
 
 RM = rm -f
 SRCS = $(SRCDIR)ft_strlen.c \
