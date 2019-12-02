@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 16:46:10 by qlouisia          #+#    #+#             */
-/*   Updated: 2019/12/01 18:55:16 by qlouisia         ###   ########.fr       */
+/*   Updated: 2019/12/02 13:24:10 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 #define DISPLAY_WIDTH 800 
 #define DISPLAY_HEIGHT 800
 #define INTMAX 2147483647
+#define BUTTON_NUMBER 11;
 
 typedef struct s_lst_complex
 {
@@ -48,6 +49,21 @@ typedef struct s_lst_comp_trig
 	double	z_2;
 
 } t_complex_trig;
+
+typedef struct s_lst_button
+{
+	int				x;
+	int				y;
+	unsigned int	color;
+	char 			*str;
+
+} t_button;
+
+typedef struct s_lst_b
+{
+	t_button		button;
+	struct s_lst_b 	*next;
+}	t_lst_button;
 
 
 typedef struct s_lst_fractol 
@@ -80,6 +96,8 @@ typedef struct s_lst_fractol
 	int clr_m;
 	unsigned int palette[16];
 	int palettte_size;
+	t_lst_button button_lst[BUTTON_NUMBER];
+	
 } t_lst_display;
 
 void color_wheel(t_lst_display *win);
