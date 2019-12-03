@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 19:45:06 by qlouisia          #+#    #+#             */
-/*   Updated: 2019/12/02 19:38:21 by qlouisia         ###   ########.fr       */
+/*   Updated: 2019/12/03 17:50:06 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,10 @@ int phoenix_compute(t_lst_display *win, double c_im, int x)
 		c.z_im2 = c.z_im * c.z_im;
 		if (c.z_re2 + c.z_im2 > 4)
 			break;
-		c.z_im = c.z_re * c.z_im;
+		c.z_im = 2 * fabs(c.z_re * c.z_im);
 		c.z_im += c.z_im;
-		c.z_im += win->julia_im * old;
-		c.z_re = c.z_re2 - c.z_im2 + win->julia_re;
+		//c.z_im += win->julia_im * old;
+		c.z_re = c.z_re2 - c.z_im2 + c.c_re;
 		c.z_re2 = sqrt(c.z_re);
 		c.z_im2 = sqrt(c.z_im);
 		i++;

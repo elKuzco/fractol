@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 11:21:46 by qlouisia          #+#    #+#             */
-/*   Updated: 2019/12/02 19:39:17 by qlouisia         ###   ########.fr       */
+/*   Updated: 2019/12/03 17:38:00 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 
 void	initialise_fractal_pines(t_lst_display *win)
 {
-	win->Minreal = -1.0;
-	win->Minima = -8.2;
-	win->Maxreal = 0.0;
+	win->Minreal = -12.0;
+	win->Minima = -12.0;
+	win->Maxreal = -9.0;
 	win->Maxima = win->Minima + (win->Maxreal - win->Minreal)
 	* (win->display_h / win->display_w);
 	win->Real_scale = (win->Maxreal - win->Minreal) / win->display_w;

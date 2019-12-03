@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 19:48:02 by qlouisia          #+#    #+#             */
-/*   Updated: 2019/12/02 19:39:00 by qlouisia         ###   ########.fr       */
+/*   Updated: 2019/12/03 17:35:52 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 void	initialise_fractal_heart(t_lst_display *win)
 {
 	win->Minreal = -2.0;
-	win->Minima = -2.2;
+	win->Minima = -1.5;
 	win->Maxreal = 0.0;
 	win->Maxima = win->Minima + (win->Maxreal - win->Minreal)
 	* (win->display_h / win->display_w);

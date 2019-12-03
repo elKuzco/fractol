@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 20:34:59 by qlouisia          #+#    #+#             */
-/*   Updated: 2019/12/02 19:36:52 by qlouisia         ###   ########.fr       */
+/*   Updated: 2019/12/03 17:29:41 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 
 void	initialise_fractal_mandel3(t_lst_display *win)
 {
-	win->Minreal = -2.0;
-	win->Minima = -1.2;
-	win->Maxreal = 1.0;
+	win->Minreal = -1.6;
+	win->Minima = -1.8;
+	win->Maxreal = 1.4;
 	win->Maxima = win->Minima + (win->Maxreal - win->Minreal)
 	* (win->display_h / win->display_w);
 	win->Real_scale = (win->Maxreal - win->Minreal) / win->display_w;

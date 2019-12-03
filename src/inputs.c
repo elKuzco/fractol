@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 14:20:19 by qlouisia          #+#    #+#             */
-/*   Updated: 2019/12/02 18:45:31 by qlouisia         ###   ########.fr       */
+/*   Updated: 2019/12/03 13:13:49 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int		quit_program(t_lst_display *env)
 		mlx_destroy_image(env->mlx_ptr, env->display_img_ptr);
 		mlx_destroy_image(env->mlx_ptr, env->ui_img_ptr);
 		mlx_destroy_window(env->mlx_ptr, env->win_ptr);
+		free(env->button_lst);
 	}
 	exit(0);
 }

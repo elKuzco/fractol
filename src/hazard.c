@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 11:21:46 by qlouisia          #+#    #+#             */
-/*   Updated: 2019/12/02 19:38:36 by qlouisia         ###   ########.fr       */
+/*   Updated: 2019/12/03 17:31:27 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,18 @@
 void	initialise_fractal_hazard(t_lst_display *win)
 {
 	win->Minreal = -2.0;
-	win->Minima = -1.2;
+	win->Minima = -1.8;
 	win->Maxreal = -2.0;
 	win->Maxima = win->Minima + (win->Maxreal - win->Minreal)
 	* (win->display_h / win->display_w);
 	win->Real_scale = (win->Maxreal - win->Minreal) / win->display_w;
 	win->Ima_scale = (win->Maxima - win->Minima) / win->display_h;
 	win->Max_it = 100;
-	win->zoom_scale = 100;
+	win->zoom_scale = 200;
 	win->pt_function_init = &initialise_fractal_hazard;
 	win->pt_function = &hazard;
 	win->julia_mod_enable = false;
-	win->clr_m = 2;
+	win->clr_m = 1;
 	set_color_to_mode1(win);
 	refresh_image(win);
 }
