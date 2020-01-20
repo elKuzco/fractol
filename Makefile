@@ -47,7 +47,7 @@ clean :
 
 fclean : clean
 		/bin/rm -f $(NAME)
-		/bin/rm -f libt/libft.a
+		/bin/rm -f libft/libft.a
 		/bin/rm -f minilibx/libmlx.dylib
 
 re : fclean all
