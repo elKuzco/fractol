@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/28 13:39:08 by qlouisia          #+#    #+#             */
-/*   Updated: 2019/12/02 19:38:04 by qlouisia         ###   ########.fr       */
+/*   Updated: 2019/12/04 13:30:15 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,20 @@
 #include "../libft/libft.h"
 #include <math.h>
 
-void	initialise_fractal_feigen(t_lst_display *win)
+void	ini_fractal_feigen(t_lst_display *win)
 {
-	win->Minreal = -2.3;
-	win->Minima = -2;
-	win->Maxreal = 0.2;
+	win->minreal = -2.3;
+	win->minima = -2;
+	win->maxreal = 0.2;
 	win->zoom_scale = 180;
-	win->Maxima = win->Minima + (win->Maxreal - win->Minreal)
+	win->maxima = win->minima + (win->maxreal - win->minreal)
 	* (win->display_h / win->display_w);
-	win->Real_scale = (win->Maxreal - win->Minreal) / win->display_w;
-	win->Ima_scale = (win->Maxima - win->Minima) / win->display_h;
-	win->julia_re = 414 / win->zoom_scale + win->Minreal;
-	win->julia_im = 522 / win->zoom_scale + win->Minima;
-	win->Max_it = 15;
-	win->pt_function_init = &initialise_fractal_feigen;
+	win->real_scale = (win->maxreal - win->minreal) / win->display_w;
+	win->ima_scale = (win->maxima - win->minima) / win->display_h;
+	win->julia_re = 414 / win->zoom_scale + win->minreal;
+	win->julia_im = 522 / win->zoom_scale + win->minima;
+	win->max_it = 15;
+	win->pt_function_init = &ini_fractal_feigen;
 	win->pt_function = &feigen;
 	win->julia_mod_enable = false;
 	set_color_to_mode1(win);
@@ -42,9 +42,9 @@ int		feigen_compute(t_lst_display *win, int x, int y)
 	double		tmp_im;
 
 	i = 0;
-	c.z_re = x / win->zoom_scale + win->Minreal;
-	c.z_im = y / win->zoom_scale + win->Minima;
-	while (i < win->Max_it)
+	c.z_re = x / win->zoom_scale + win->minreal;
+	c.z_im = y / win->zoom_scale + win->minima;
+	while (i < win->max_it)
 	{
 		c.z_re2 = c.z_re * c.z_re;
 		c.z_im2 = c.z_im * c.z_im;

@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 14:20:19 by qlouisia          #+#    #+#             */
-/*   Updated: 2019/12/03 13:13:49 by qlouisia         ###   ########.fr       */
+/*   Updated: 2019/12/04 13:30:15 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,24 +36,22 @@ int		mouse_control(int m_code, int x, int y, t_lst_display *win)
 		if (m_code == 5)
 		{
 			win->zoom_scale *= 1.1;
-			win->Max_it++;
+			win->max_it++;
 		}
 		if (m_code == 4 && (win->zoom_scale > 1))
 		{
 			win->zoom_scale /= 1.1;
-			if (win->Max_it > 10)
-				win->Max_it--;
+			if (win->max_it > 10)
+				win->max_it--;
 		}
-		win->Minreal += (x / tmp_zoom) - (x / win->zoom_scale);
-		win->Minima += (y / tmp_zoom) - (y / win->zoom_scale);
-		win->Real_scale = (win->Maxreal - win->Minreal) / win->display_w;
-		win->Ima_scale = (win->Maxima - win->Minima) / win->display_h;
+		win->minreal += (x / tmp_zoom) - (x / win->zoom_scale);
+		win->minima += (y / tmp_zoom) - (y / win->zoom_scale);
+		win->real_scale = (win->maxreal - win->minreal) / win->display_w;
+		win->ima_scale = (win->maxima - win->minima) / win->display_h;
 		refresh_image(win);
 	}
-	else if (m_code == 1) 
-	{
+	else if (m_code == 1)
 		check_for_button(win, x, y);
-	}
 	return (0);
 }
 
@@ -61,8 +59,8 @@ int		motion_hook(int x, int y, t_lst_display *win)
 {
 	if (win->julia_mod_enable == true)
 	{
-		win->julia_re = x / win->zoom_scale + win->Minreal;
-		win->julia_im = y / win->zoom_scale + win->Minima;
+		win->julia_re = x / win->zoom_scale + win->minreal;
+		win->julia_im = y / win->zoom_scale + win->minima;
 	}
 	refresh_image(win);
 	return (0);
@@ -86,21 +84,21 @@ void	change_fractal(int keycode, t_lst_display *p)
 	if (keycode == 16)
 		p->julia_mod_enable = (p->julia_mod_enable == false) ? true : false;
 	if (keycode == 69)
-		p->Max_it += (p->Max_it < 1000) ? 5 : 0;
+		p->max_it += (p->max_it < 1000) ? 2 : 0;
 	if (keycode == 78)
-		p->Max_it -= (p->Max_it > 10) ? 5 : 0;
+		p->max_it -= (p->max_it > 10) ? 2 : 0;
 	refresh_image(p);
 }
 
 int		move(int keycode, t_lst_display *param)
 {
 	if (keycode == 124)
-		param->Minreal += 8 / param->zoom_scale;
+		param->minreal += 8 / param->zoom_scale;
 	if (keycode == 123)
-		param->Minreal -= 8 / param->zoom_scale;
+		param->minreal -= 8 / param->zoom_scale;
 	if (keycode == 125)
-		param->Minima -= 8 / param->zoom_scale;
+		param->minima -= 8 / param->zoom_scale;
 	if (keycode == 126)
-		param->Minima += 8 / param->zoom_scale;
+		param->minima += 8 / param->zoom_scale;
 	return (0);
 }

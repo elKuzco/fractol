@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 11:21:46 by qlouisia          #+#    #+#             */
-/*   Updated: 2019/12/03 17:38:00 by qlouisia         ###   ########.fr       */
+/*   Updated: 2019/12/04 13:30:15 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 #include "../libft/libft.h"
 #include <math.h>
 
-void	initialise_fractal_pines(t_lst_display *win)
+void	ini_fractal_pines(t_lst_display *win)
 {
-	win->Minreal = -12.0;
-	win->Minima = -12.0;
-	win->Maxreal = -9.0;
-	win->Maxima = win->Minima + (win->Maxreal - win->Minreal)
+	win->minreal = -12.0;
+	win->minima = -12.0;
+	win->maxreal = -9.0;
+	win->maxima = win->minima + (win->maxreal - win->minreal)
 	* (win->display_h / win->display_w);
-	win->Real_scale = (win->Maxreal - win->Minreal) / win->display_w;
-	win->Ima_scale = (win->Maxima - win->Minima) / win->display_h;
-	win->Max_it = 25;
+	win->real_scale = (win->maxreal - win->minreal) / win->display_w;
+	win->ima_scale = (win->maxima - win->minima) / win->display_h;
+	win->max_it = 25;
 	win->zoom_scale = 30;
-	win->pt_function_init = &initialise_fractal_pines;
+	win->pt_function_init = &ini_fractal_pines;
 	win->pt_function = &pines;
 	win->julia_mod_enable = false;
 	win->clr_m = 2;
@@ -38,11 +38,11 @@ int		pines_compute(t_lst_display *win, double c_im, int x)
 	int				i;
 	t_complex_trig	c;
 
-	c.c_re = x / win->zoom_scale + win->Minreal;
+	c.c_re = x / win->zoom_scale + win->minreal;
 	set_struct_comp(&c, c_im);
 	c.n_zim = c_im;
 	i = 0;
-	while (i < win->Max_it)
+	while (i < win->max_it)
 	{
 		c.z_re = c.n_zre;
 		c.z_im = c.n_zim;
@@ -72,7 +72,7 @@ void	pines(t_lst_display *win, int start)
 	xmax = start + win->display_w / THREAD_NUMBER;
 	while (y < win->display_h)
 	{
-		c_im = y / win->zoom_scale + win->Minima;
+		c_im = y / win->zoom_scale + win->minima;
 		x = start;
 		while (x < xmax)
 		{

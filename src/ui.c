@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 14:22:59 by qlouisia          #+#    #+#             */
-/*   Updated: 2019/12/03 17:27:05 by qlouisia         ###   ########.fr       */
+/*   Updated: 2019/12/04 13:30:15 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,21 +38,6 @@ void	draw_background(t_lst_display *win, int y, int x, unsigned int color)
 		}
 		y++;
 	}
-}
-
-void    draw_name_button(t_lst_display *w)
-{
-	mlx_string_put(w->mlx_ptr, w->win_ptr,  5, 108 + DISPLAY_HEIGHT, G_UI, "Mandel");
-	mlx_string_put(w->mlx_ptr, w->win_ptr,  80, 108 + DISPLAY_HEIGHT, G_UI, "Julia");
-	mlx_string_put(w->mlx_ptr, w->win_ptr,  160, 108 + DISPLAY_HEIGHT, G_UI, "Tri");
-	mlx_string_put(w->mlx_ptr, w->win_ptr,  225, 108 + DISPLAY_HEIGHT, G_UI, "Ship");
-	mlx_string_put(w->mlx_ptr, w->win_ptr,  287, 108 + DISPLAY_HEIGHT, G_UI, "Mande3");
-	mlx_string_put(w->mlx_ptr, w->win_ptr,  360, 108 + DISPLAY_HEIGHT, G_UI, "Julia3");
-	mlx_string_put(w->mlx_ptr, w->win_ptr,  428, 108 + DISPLAY_HEIGHT, G_UI, "Phoeni");
-	mlx_string_put(w->mlx_ptr, w->win_ptr,  500, 108 + DISPLAY_HEIGHT, G_UI, "Feigen");
-	mlx_string_put(w->mlx_ptr, w->win_ptr,  570, 108 + DISPLAY_HEIGHT, G_UI, "Heart");
-	mlx_string_put(w->mlx_ptr, w->win_ptr,  638, 108 + DISPLAY_HEIGHT, G_UI, "Hazard");
-	mlx_string_put(w->mlx_ptr, w->win_ptr,  710, 108 + DISPLAY_HEIGHT, G_UI, "Pines");
 }
 
 void	print_command(t_lst_display *w)
@@ -97,7 +82,7 @@ void	print_ui(t_lst_display *e)
 	(e->clr_m == 1) ? color = "Polarized" : 0;
 	(e->clr_m == 3) ? color = "Matrix" : 0;
 	(e->clr_m == 4) ? color = "Rainbow" : 0;
-	iter = ft_itoa(e->Max_it);
+	iter = ft_itoa(e->max_it);
 	mlx_string_put(e->mlx_ptr, e->win_ptr, 30, 820, G_UI, "Iteration Max:");
 	mlx_string_put(e->mlx_ptr, e->win_ptr, 180, 820, G_UI, iter);
 	mlx_string_put(e->mlx_ptr, e->win_ptr, 590, 820, G_UI, "Color :");

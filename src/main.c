@@ -6,16 +6,13 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 16:34:21 by qlouisia          #+#    #+#             */
-/*   Updated: 2019/12/02 18:02:44 by qlouisia         ###   ########.fr       */
+/*   Updated: 2019/12/04 12:34:06 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fractol.h"
 #include "../libft/libft.h"
 #include "mlx.h"
-
-// modifications
-#include "../include/colors.h"
 
 int	get_input(int keycode, t_lst_display *win)
 {
@@ -43,27 +40,27 @@ int	print_usage(void)
 int	select_fractal(t_lst_display *win, char *input)
 {
 	if (!ft_strcmp(input, "mandelbrot"))
-		win->pt_function_init = &initialise_fractal_mandel;
+		win->pt_function_init = &ini_fractal_mandel;
 	else if (!ft_strcmp(input, "julia"))
-		win->pt_function_init = &initialise_fractal_julia;
+		win->pt_function_init = &ini_fractal_julia;
 	else if (!ft_strcmp(input, "tricorn"))
-		win->pt_function_init = &initialise_fractal_tricorn;
+		win->pt_function_init = &ini_fractal_tricorn;
 	else if (!ft_strcmp(input, "burningship"))
-		win->pt_function_init = &initialise_fractal_burningship;
+		win->pt_function_init = &ini_fractal_burningship;
 	else if (!ft_strcmp(input, "mandelbrot3"))
-		win->pt_function_init = &initialise_fractal_mandel3;
+		win->pt_function_init = &ini_fractal_mandel3;
 	else if (!ft_strcmp(input, "julia3"))
-		win->pt_function_init = &initialise_fractal_julia3;
+		win->pt_function_init = &ini_fractal_julia3;
 	else if (!ft_strcmp(input, "feigenbaum"))
-		win->pt_function_init = &initialise_fractal_feigen;
+		win->pt_function_init = &ini_fractal_feigen;
 	else if (!ft_strcmp(input, "phoenix"))
-		win->pt_function_init = &initialise_fractal_phoenix;
+		win->pt_function_init = &ini_fractal_phoenix;
 	else if (!ft_strcmp(input, "hazard"))
-		win->pt_function_init = &initialise_fractal_hazard;
+		win->pt_function_init = &ini_fractal_hazard;
 	else if (!ft_strcmp(input, "heart"))
-		win->pt_function_init = &initialise_fractal_heart;
+		win->pt_function_init = &ini_fractal_heart;
 	else if (!ft_strcmp(input, "pines"))
-		win->pt_function_init = &initialise_fractal_pines;
+		win->pt_function_init = &ini_fractal_pines;
 	else
 		return (0);
 	return (1);
@@ -81,8 +78,5 @@ int	main(int argc, char **argv)
 	if (!select_fractal(&win, argv[1]))
 		return (print_usage());
 	win.pt_function_init(&win);
-	//mod
-	draw_background((&win), (&win)->display_h, 0, GREY_UI);
-	//
 	display(mlx_serv, &win);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   julia.c                                            :+:      :+:    :+:   */
+/*   Julia.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 19:45:06 by qlouisia          #+#    #+#             */
-/*   Updated: 2019/12/02 18:50:59 by qlouisia         ###   ########.fr       */
+/*   Updated: 2019/12/04 13:30:15 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,21 @@
 #include "../libft/libft.h"
 #include <math.h>
 
-void	initialise_fractal_julia(t_lst_display *win)
+void	ini_fractal_julia(t_lst_display *win)
 {
-	win->Minreal = -1.5;
-	win->Minima = -1.2;
-	win->Maxreal = 1.0;
-	win->Maxima = win->Minima + (win->Maxreal - win->Minreal)
+	win->minreal = -1.5;
+	win->minima = -1.2;
+	win->maxreal = 1.0;
+	win->maxima = win->minima + (win->maxreal - win->minreal)
 	* (win->display_h / win->display_w);
-	win->Real_scale = (win->Maxreal - win->Minreal) / win->display_w;
-	win->Ima_scale = (win->Maxima - win->Minima) / win->display_h;
-	win->julia_re = 200 / win->zoom_scale + win->Minreal;
-	win->julia_im = 100 / win->zoom_scale + win->Minima;
+	win->real_scale = (win->maxreal - win->minreal) / win->display_w;
+	win->ima_scale = (win->maxima - win->minima) / win->display_h;
+	win->julia_re = 200 / win->zoom_scale + win->minreal;
+	win->julia_im = 100 / win->zoom_scale + win->minima;
+	win->max_it = 30;
 	win->pt_function = &julia;
 	win->zoom_scale = 250;
-	win->pt_function_init = &initialise_fractal_julia;
+	win->pt_function_init = &ini_fractal_julia;
 	win->julia_mod_enable = false;
 	set_color_to_mode1(win);
 	refresh_image(win);
@@ -39,9 +40,9 @@ int		julia_compute(t_lst_display *win, int x, int y)
 	int			i;
 
 	i = 0;
-	c.z_re = x / win->zoom_scale + win->Minreal;
-	c.z_im = y / win->zoom_scale + win->Minima;
-	while (i < win->Max_it)
+	c.z_re = x / win->zoom_scale + win->minreal;
+	c.z_im = y / win->zoom_scale + win->minima;
+	while (i < win->max_it)
 	{
 		c.z_re2 = c.z_re * c.z_re;
 		c.z_im2 = c.z_im * c.z_im;

@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 12:02:52 by qlouisia          #+#    #+#             */
-/*   Updated: 2019/12/01 16:50:15 by qlouisia         ###   ########.fr       */
+/*   Updated: 2019/12/04 13:30:15 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,20 +73,20 @@ unsigned int	colormod(int n, t_lst_display *win)
 	int		i;
 	double	r;
 
-	if ((win->clr_m == 1 || win->clr_m == 4) && (n < win->Max_it && n > 0))
+	if ((win->clr_m == 1 || win->clr_m == 4) && (n < win->max_it && n > 0))
 	{
 		i = n % win->palettte_size;
 		return (win->palette[i]);
 	}
 	else if (win->clr_m == 2)
 	{
-		r = n / win->Max_it;
+		r = n / win->max_it;
 		if (r == 1.0)
 			return (convert_rgb(0x0, 255 * r, 0, 0));
 	}
 	else if (win->clr_m == 3)
 	{
-		r = (double)n / (double)win->Max_it;
+		r = (double)n / (double)win->max_it;
 		if (r == 1.0)
 			return (convert_rgb(0x0, 0, 0, 0));
 		if (r > 0.5)
