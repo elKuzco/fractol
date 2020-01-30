@@ -6,7 +6,7 @@
 /*   By: qlouisia <qlouisia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 11:21:46 by qlouisia          #+#    #+#             */
-/*   Updated: 2019/12/04 13:30:15 by qlouisia         ###   ########.fr       */
+/*   Updated: 2020/01/30 12:32:34 by qlouisia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ini_fractal_hazard(t_lst_display *win)
 	* (win->display_h / win->display_w);
 	win->real_scale = (win->maxreal - win->minreal) / win->display_w;
 	win->ima_scale = (win->maxima - win->minima) / win->display_h;
-	win->max_it = 100;
+	win->max_it = 50;
 	win->zoom_scale = 200;
 	win->pt_function_init = &ini_fractal_hazard;
 	win->pt_function = &hazard;
